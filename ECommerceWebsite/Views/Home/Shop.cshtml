@@ -1,0 +1,48 @@
+﻿@model ECommerceWebsite.Models.ProductListModel
+
+@section cssFile
+{
+    @Styles.Render("~/Shop/css")
+}
+
+
+<div id="shopPageBanner">
+    <img src="../images/shopWithUs_bg.png" alt="" width="100%" id="laptopShopBanner">
+</div>
+
+<div class="filter-bar">
+    <span id="filterClick">Filter/Sort <i class="fa fa-filter"></i></span>
+    <div id="sortFilterDrops">
+        <select name="filter" id="categoryDropDown" onchange="searchByFilters()">
+            <option value="0">Filter : Category</option>
+            <option value="1">Sneakers</option>
+            <option value="2">Formals</option>
+            <option value="3">Sports Shoes</option>
+        </select>
+        <select name="sort" id="priceDropDown" onchange="searchByFilters()">
+            <option value="0">Sort : Price Range</option>
+            <option value="1">Low to High</option>
+            <option value="2">High to Low</option>
+        </select>
+    </div>
+</div>
+
+<div class="main-box">
+    @foreach (var currentProduct in Model.ProductList)
+    {
+        <div class="prod-box">
+            <img src="@currentProduct.ImagePath_1" alt="">
+            <span>@currentProduct.Product_Name</span>
+            <span>@currentProduct.Price</span>
+        </div>
+    }
+</div>
+
+@section scriptFile
+{
+    <script>
+        var selectedCategoryDropDown = @Model.CategorySort
+        var selectedPriceDropDown = @Model.PriceSort
+    </script>
+    @Scripts.Render("~/Shop/js")
+}

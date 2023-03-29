@@ -1,0 +1,208 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Alata&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#contentHolder {
+    padding: 0px;
+}
+
+.images {
+    max-width: 150px;
+    width: 100%;
+    height: auto;
+}
+
+/* NavBar */
+.navbar {
+    z-index: 110;
+    box-shadow: 10px 0px 10px black;
+    position: sticky;
+    top: 0;
+    background-color: white;
+}
+
+.brand {
+    font-family: 'Alata', sans-serif;
+    font-size: 30px;
+    text-decoration: none;
+    color: black;
+}
+
+.brand-item-color {
+    color: #899194;
+}
+
+.search-navbar {
+    width: 20vw;
+}
+
+.search-input {
+    outline: none;
+    border: none;
+}
+
+    .search-input:focus {
+        box-shadow: none;
+        background-color: transparent;
+        border: 2px solid #899194;
+        transition: .15s ease-in-out;
+    }
+
+.nav-align-item {
+    margin: 0px !important;
+}
+
+#navbarSupportedContent {
+    margin-left: 2vw;
+}
+
+.nav-items li {
+    margin-left: 2vw;
+}
+
+    .nav-items li a {
+        font-size: 17px;
+    }
+
+.nav-icons li a i {
+    margin-left: .3vw;
+    font-size: 20px;
+}
+
+.active {
+    font-weight: bolder;
+}
+
+@media screen and (max-width: 992px) {
+    .search-input {
+        border: 2px solid #899194;
+    }
+
+        .search-input:focus {
+            border: 2px solid #899194;
+        }
+
+    .search-navbar {
+        width: 100%;
+        margin-bottom: 2vh;
+    }
+
+    .nav-items li {
+        margin-left: 0vw;
+    }
+
+    .nav-item {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.45);
+    }
+}
+
+/* FOOTER */
+.footer-social-icons a {
+    text-decoration: none;
+}
+
+footer p a {
+    text-decoration: none;
+}
+
+    footer p a:hover {
+        font-weight: bolder;
+    }
+
+footer .footer-logo {
+    text-align: center;
+}
+
+footer .copyright {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* News Letter */
+
+.newsLetter {
+    background-image: url(../images/newsletter_bg.png);
+    height: auto;
+    background-size: cover;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    text-align: center;
+    padding: 20px;
+}
+
+.NewsText {
+    padding-top: 10px;
+    background-color: rgba(0, 0, 0, 0.47);
+    color: white;
+    font-family: 'Alata', sans-serif;
+    margin: 0vw 1vw;
+}
+
+.button-subscirbe {
+    width: 100px;
+    background-color: black;
+    outline: none;
+    height: 30px;
+    color: white;
+    transition: 0.3s ease-in-out;
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+    .button-subscirbe:hover {
+        background-color: black;
+        color: white;
+    }
+
+.input-subscribe input {
+    width: 50%;
+    height: 30px;
+    padding-left: 1vw;
+    background-color: white;
+    outline: none;
+    border: 2px solid #000000;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.input-subscribe {
+    background-color: rgba(0, 0, 0, 0.47);
+    padding-bottom: 3vh;
+    margin: 0vw 1vw;
+    padding-right: 0px !important;
+}
+
+@media screen and (max-width: 768px) {
+    .input-subscribe input {
+        width: 90%;
+    }
+
+    .input-subscribe .col1, .input-subscribe .col2 {
+        text-align: center !important;
+    }
+}
+
+/* Product Box */
+
+.prod-box {
+    max-width: 400px;
+    width: 400px;
+    border: 2px solid black;
+    border-radius: 5rem;
+    padding: 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 20px;
+}
+
+    .prod-box img {
+        max-width: 300px;
+        border-radius: 5rem;
+    }

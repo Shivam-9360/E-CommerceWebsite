@@ -1,0 +1,188 @@
+﻿@section cssFile
+{
+    @Styles.Render("~/Login/css")
+}
+
+<!-- Login-Signup -->
+<div class="content login-frame">
+    <div class="row justify-content-center inner-contents">
+        <div class="col-md align-logo adjust-padding">
+            <img src="../images/lightmode_logo.png" alt="Image" class="login-logo">
+        </div>
+        <div class="col-md contents adjust-padding">
+            <div class="row justify-content-center inner-contents">
+                <div class="col-md-8">
+                    <div class="mb-4">
+                        <h3>LOGIN</h3>
+                    </div>
+                    <form action="@Url.Action("Login", "LoginSignup", new { id = "" })" onsubmit="return check_login_form()" method="post">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="username" placeholder="Email ID" name="Email" required>
+                        </div>
+                        <div class="form-group mb-4">
+                            <input type="password" class="form-control" id="logpassword" placeholder="Password" name="Password" required minlength="8">
+                        </div>
+
+                        <div class="d-flex mb-3 align-items-center forgot-link">
+                            <div>
+                                <input type="checkbox" checked="checked" />
+                                <label class="mb-0"><span class="caption">Remember me</span></label>
+                            </div>
+                            <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password?</a></span>
+
+                        </div>
+
+                        <input type="submit" value="Log In" class="btn btn-block login-button">
+
+                        <div class="d-flex mt-4 justify-content-center">
+                            <span>Don't have an account? <span class="signup-link">Sign Up</span></span>
+                        </div>
+
+                        <span class="d-block text-left my-4 text-muted">&mdash; or login with &mdash;</span>
+
+                        <div class="social-login">
+                            <a href="#" class="facebook">
+                                <span class="icon-facebook mr-3"><i class="fa fa-facebook-f"></i></span>
+                            </a>
+                            <a href="#" class="twitter">
+                                <span class="icon-twitter mr-3"><i class="fa fa-twitter"></i></span>
+                            </a>
+                            <a href="#" class="google">
+                                <span class="icon-google mr-3"><i class="fa fa-google"></i></span>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content signup-frame">
+    <div class="row justify-content-center inner-contents">
+        <div class="col-md align-logo adjust-padding">
+            <img src="../images/lightmode_logo.png" alt="Image" class="login-logo">
+        </div>
+        <div class="col-md contents adjust-padding">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="mb-4">
+                        <h3>SIGN UP</h3>
+                    </div>
+                    <form action="@Url.Action("SignUp", "LoginSignup", new { id = "" })" onsubmit="return check_signup_form()" method="post">
+                        <div class="form-group mb-4">
+                            <input type="text" class="form-control" name="FullName" id="fullName" placeholder="Full Name" required
+                                   onkeyup="check_name()">
+                            <span id="nameError"></span>
+                        </div>
+                        <div class="form-group  mb-4">
+                            <input type="text" class="form-control" name="PhoneNumber" id="phoneNumber" placeholder="Number" required
+                                   minlength="10" onkeyup="check_phone()">
+                            <span id="numberError"></span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <input type="email" class="form-control" name="Email" id="email" placeholder="Email ID" required
+                                   onkeyup="check_mail()">
+                            <span id="emailError"></span>
+                        </div>
+                        <div class="form-group mb-4">
+                            <input type="password" class="form-control" name="Password" id="password" placeholder="Password"
+                                   minlength="8" required>
+                        </div>
+                        <div class="form-group mb-4">
+                            <input type="password" class="form-control" id="confirmPassword"
+                                   placeholder="Confirm Password" minlength="8" required onkeyup="pass_confirm()">
+                            <span id="confirmPasswordError"></span>
+                        </div>
+                        <div class="d-flex mb-3 align-items-center forgot-link">
+                            <div>
+                                <input type="checkbox" checked="checked" />
+                                <label class="mb-0"><span class="caption">Remember me</span></label>
+                            </div>
+                            <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password?</a></span>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <span>
+                                <input type="checkbox" name="terms-and-conditions" id="termsAndConditions"
+                                       onclick="termsconditions()">
+                                <label for="termsAndConditions">
+                                    <a href="#">
+                                        <span id="terms-label" data-bs-toggle="modal"
+                                           data-bs-target="#termsAndConditionsModal">
+                                            ACCEPT TERMS AND CONDITIONS <i class="fa fa-external-link"></i>
+                                        </span>
+                                    </a>
+                                </label>
+                            </span>
+                        </div>
+                        <input type="submit" value="Signup" class="btn btn-block signup-button" id="submit-btn"
+                               disabled>
+                        <span id="submitError"></span>
+                        <div class="d-flex mt-4 justify-content-center">
+                            <span>Already have an account? <span class="login-link">Login</span></span>
+                        </div>
+                        <span class="d-block text-left my-4 text-muted">&mdash; or Sign Up with &mdash;</span>
+                        <div class="social-login">
+                            <a href="#" class="facebook">
+                                <span class="icon-facebook mr-3"><i class="fa fa-facebook-f"></i></span>
+                            </a>
+                            <a href="#" class="twitter">
+                                <span class="icon-twitter mr-3"><i class="fa fa-twitter"></i></span>
+                            </a>
+                            <a href="#" class="google">
+                                <span class="icon-google mr-3"><i class="fa fa-google"></i></span>
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- Login-Signup -->
+<!-- Modal -->
+<div class="modal fade" id="termsAndConditionsModal" tabindex="-1" aria-labelledby="termsAndConditionsModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="termsAndConditionsModalLabel">Terms and Conditions</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                    Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero
+                    sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+                    Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed,
+                    commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros
+                    ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
+                    facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu
+                    vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
+                    porttitor, facilisis luctus, metus
+                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+                    Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero
+                    sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
+                    Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed,
+                    commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros
+                    ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
+                    facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu
+                    vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
+                    porttitor, facilisis luctus, metus
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Vertically centered scrollable modal -->
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"></div>
+<!-- Modal -->
+
+@section scriptFile
+{
+    @Scripts.Render("~/Login/js")
+}

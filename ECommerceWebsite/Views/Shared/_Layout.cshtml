@@ -1,0 +1,213 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sole Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @RenderSection("cssFile", required: false)
+</head>
+
+<body>
+    <!-- NavBar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <!-- Brand-->
+            <a class="navbar-brand brand" href="@Url.Action("Index", "Home", new { id = "" }) ">Sole<span class="brand-item-color">Store</span></a>
+            <!-- Brand-->
+            <!-- Collapse Toggle Button-->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <!-- Collapse Toggle Button-->
+            <!-- NavBar Menu-->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-items" id="navBarLinksList">
+                    <li class="nav-item">
+                        @Html.ActionLink("HOME", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("SHOP", "Shop", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("ABOUT US", "AboutUs", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item" style="border: none;">
+                        @Html.ActionLink("CONTACT US", "ContactUs", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                </ul>
+                <form class="d-flex search-navbar" role="search">
+                    <input class="form-control me-2 search-input" type="search" placeholder="&#xF002; Search"
+                           style="font-family:Arial, FontAwesome" aria-label="Search">
+                </form>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-align-item nav-icons">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa fa-adjust" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+                    </li>
+                    <li class="nav-item" style="border: none;">
+                        <a class="nav-link" href="@Url.Action("Index", "LoginSignup", new { id = ""  }) "><i class="fa fa-user" aria-hidden="true"></i></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- NavBar Menu-->
+        </div>
+    </nav>
+    <!-- NavBar -->
+    <!-- Page -->
+    <div id="contentHolder" class="container-fluid">
+        @RenderBody()
+    </div>
+    <!-- Page -->
+    <!-- NewsLetter -->
+    <div class="container-fluid newsLetter">
+        <div class="row NewsText">
+            <div class="col-md-12">
+                <h1>Subscribe to our News Letter</h1>
+                <p>Get notified about our latest products, exciting deals and offers!</p>
+            </div>
+        </div>
+        <div class="row input-subscribe">
+            <div class="col-md-8 col1" style="text-align: right;">
+                <input type="text" name="NewsLetter" id="NewsLetter" placeholder="Enter valid Email">
+            </div>
+            <div class="col-md-4 col2" style="text-align: left;">
+                <button class="button-subscirbe">SUBMIT</button>
+            </div>
+        </div>
+    </div>
+    <!-- NewsLetter -->
+    <!-- Footer -->
+    <footer class="text-center text-lg-start bg-light text-muted">
+        <!-- Section: Social media -->
+        <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+            <!-- Left -->
+            <div class="me-5 d-none d-lg-block">
+                <span>Get connected with us on social networks:</span>
+            </div>
+            <!-- Left -->
+            <!-- Right -->
+            <div class="footer-social-icons">
+                <a href="https://facebook.com" class="me-4 text-reset">
+                    <i class="fa fa-facebook-f"></i>
+                </a>
+                <a href="https://twitter.com" class="me-4 text-reset">
+                    <i class="fa fa-twitter"></i>
+                </a>
+                <a href="https://instagram.com" class="me-4 text-reset">
+                    <i class="fa fa-instagram"></i>
+                </a>
+                <a href="https://linkedin.com" class="me-4 text-reset">
+                    <i class="fa fa-linkedin"></i>
+                </a>
+                <a href="https://github.com" class="me-4 text-reset">
+                    <i class="fa fa-github"></i>
+                </a>
+            </div>
+            <!-- Right -->
+        </section>
+        <!-- Section: Social media -->
+        <!-- Section: Links  -->
+        <section>
+            <div class="container text-center text-md-start mt-5">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-4 col-xl-3  mb-4 footer-logo">
+                        <!-- Content -->
+                        <h3 class="mb-4 brand">Sole<span class="brand-item-color">Store</span></h3>
+                        <img src="../Images/lightmode_logo.png" class="images" alt="logo">
+                    </div>
+
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Products
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">Casuals</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Sneakers</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Formals</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                        <!-- Links -->
+                        <h6 class="text-uppercase fw-bold mb-4">
+                            Useful links
+                        </h6>
+                        <p>
+                            <a href="#!" class="text-reset">Home</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">About Us</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Contact Us</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Shop</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Cart</a>
+                        </p>
+                        <p>
+                            <a href="#!" class="text-reset">Wish List</a>
+                        </p>
+                    </div>
+                    <!-- Grid column -->
+                    <!-- Grid column -->
+                    <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+                        <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+                        <p><i class="fa fa-home me-3"></i> Mukesh Patel School of Technology,Management and Engineering</p>
+                        <i class="fa fa-envelope me-3"></i>
+                        aadityarmall@gmail.com
+                        <p><i class="fa fa-phone me-3"></i>+91 9326430750</p>
+                    </div>
+                    <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+            </div>
+        </section>
+        <!-- Section: Links  -->
+        <!-- Copyright -->
+        <div class="text-center p-4 copyright">
+            <marquee direction="left">
+                © @DateTime.Now.Year Copyright: C002 Aaditya Mall, C006 Manya Gor, C017 Shivam Kulkarni
+            </marquee>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"
+            integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+    <script>
+        var currentPage = "@ViewBag.Title";
+    </script>
+    @Scripts.Render("~/Layout/js")
+    @RenderSection("scriptFile", required: false)
+</body>
+</html>
