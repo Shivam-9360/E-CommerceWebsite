@@ -5,7 +5,7 @@ VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerceWebsite", "ECommerceWebsite\ECommerceWebsite.csproj", "{A27C07EC-EF5B-4303-8DB7-1558BDB1167C}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "E-CommerDatabase", "E-CommerDatabase\E-CommerDatabase.sqlproj", "{2874EF77-8801-4EED-B218-F6AD731505A5}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "E-CommerceDatabase", "E-CommerDatabase\E-CommerceDatabase.sqlproj", "{2874EF77-8801-4EED-B218-F6AD731505A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
