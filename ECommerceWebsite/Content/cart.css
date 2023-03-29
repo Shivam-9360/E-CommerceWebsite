@@ -1,0 +1,184 @@
+﻿#contentHolder {
+    background-image: url(../images/loginpg_bg.png);
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.title {
+    margin-bottom: 5vh;
+}
+
+.cart-item-size span {
+    vertical-align: middle;
+    align-items: center;
+}
+
+.card {
+    margin: auto;
+    max-width: 950px;
+    width: 95%;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 1rem;
+    border: transparent;
+}
+
+@media(max-width:767px) {
+    .card {
+        margin: 3vh auto;
+    }
+}
+
+.cart {
+    background-color: #fff;
+    padding: 4vh 5vh;
+    border-radius: 1rem;
+}
+
+.cart-quantity {
+    text-align: center;
+    margin-top: 20px;
+    vertical-align: middle;
+}
+
+    .cart-quantity input {
+        font-weight: bolder;
+        width: 7vh;
+        height: 7vh;
+        background-color: transparent;
+        text-align: center;
+    }
+
+.cart-prod-image {
+    width: 100px;
+}
+
+.text-muted {
+    font-size: 10px;
+}
+
+.cart-item-count {
+    color: gray;
+    font-size: larger;
+}
+
+@media(max-width:767px) {
+    .cart {
+        padding: 4vh;
+        border-bottom-left-radius: unset;
+        border-top-right-radius: 1rem;
+    }
+}
+
+.summary {
+    background-color: #ddd;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    padding: 4vh;
+    color: rgb(65, 65, 65);
+}
+
+@media(max-width:767px) {
+    .summary {
+        border-top-right-radius: unset;
+        border-bottom-left-radius: 1rem;
+    }
+}
+
+.title b {
+    font-size: 1.5rem;
+}
+
+.main {
+    margin: 0;
+    padding: 2vh 0;
+    width: 100%;
+}
+
+.col-2, .col {
+    padding: 0 1vh;
+}
+
+a {
+    padding: 0 1vh;
+}
+
+.close {
+    margin-left: auto;
+    font-size: 0.7rem;
+}
+
+img {
+    width: 3.5rem;
+}
+
+.back-to-shop {
+    margin-top: 4.5rem;
+}
+
+h5 {
+    margin-top: 4vh;
+}
+
+hr {
+    margin-top: 1.25rem;
+}
+
+form {
+    padding: 2vh 0;
+}
+
+select {
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1.5vh 1vh;
+    margin-bottom: 4vh;
+    outline: none;
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+}
+
+.summary input {
+    border: 1px solid rgba(0, 0, 0, 0.137);
+    padding: 1vh;
+    margin-bottom: 4vh;
+    outline: none;
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+}
+
+.summary textarea {
+    width: 100%;
+}
+
+.btn {
+    background-color: #000;
+    border: 2px solid #000;
+    color: white;
+    width: 100%;
+    font-size: 0.7rem;
+    padding: 1vh;
+    border-radius: 0;
+    transition: .3s ease-in-out;
+}
+
+    .btn:hover {
+        border: 2px solid black;
+        color: black;
+    }
+
+.fa-times-circle:hover {
+    cursor: pointer;
+}
+
+.deleted {
+    display: none;
+}
+
+.cart-item hr {
+    margin-top: 2vh;
+}
+
+#addressField {
+    border: none;
+    outline: none;
+}

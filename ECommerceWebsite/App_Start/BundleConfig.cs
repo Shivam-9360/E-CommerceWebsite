@@ -17,6 +17,9 @@ namespace ECommerceWebsite
             bundles.Add(new ScriptBundle("~/Shop/js").Include(
                         "~/Scripts/shop*"));
 
+            bundles.Add(new ScriptBundle("~/Cart/js").Include(
+                        "~/Scripts/shop*"));
+
             bundles.Add(new ScriptBundle("~/Product/js").Include(
                         "~/Scripts/lightslider*",
                         "~/Scripts/product*"));
@@ -43,6 +46,9 @@ namespace ECommerceWebsite
 
             bundles.Add(new StyleBundle("~/Shop/css").Include(
                       "~/Content/shop.css"));
+
+            bundles.Add(new StyleBundle("~/Cart/css").Include(
+                      "~/Content/cart.css"));
 
             bundles.Add(new StyleBundle("~/Product/css").Include(
                       "~/Content/product.css",

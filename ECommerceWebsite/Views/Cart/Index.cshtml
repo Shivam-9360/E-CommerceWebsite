@@ -1,0 +1,98 @@
+﻿@section cssFile
+{
+    @Styles.Render("~/Cart/css")
+}
+
+<div style="display: flex; justify-content:center;">
+    <div class="card m-4 ">
+        <div class="row">
+            <div class="col-md-9 cart">
+                <div class="title">
+                    <div class="row">
+                        <div class="col">
+                            <h4><b>Shopping Cart</b></h4>
+                            <span id="cartItemCountCart">Items </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="cartProducts" onchange="calcPriceFinal()">
+
+                    <div class="row main align-items-center cart-item">
+                        <div class="col-3 "><img class="img-fluid cart-prod-image" src="../Products/Casual Wear/Product 1/img1.png"></div>
+                        <div class="col p-2">
+                            <div class="row text-muted">Casual</div>
+                            <div class="row">Nike Lebron 5</div>
+                        </div>
+
+                        <div class="col cart-quantity">
+                            <input type="number" name="cartQuantityProduct_1" id="cartQuantityProduct_1" value="1" min="1" max="9">
+                        </div>
+
+                        <div class="col">
+                            <span id="basePriceProduct_1" style="display: none;">120</span>
+                            <span>$</span><span id="productFinal_1">120</span>
+                        </div>
+
+                        <div class="col"><span class="fa fa-times-circle" onclick="deleteItemFromCart(this.parentElement)"></span></div>
+                        <hr>
+                    </div>
+
+                    <div class="row main align-items-center cart-item">
+                        <div class="col-3 "><img class="img-fluid cart-prod-image" src="../Products/Casual Wear/Product 1/img1.png"></div>
+                        <div class="col p-2">
+                            <div class="row text-muted">Casual</div>
+                            <div class="row">Nike Lebron 5</div>
+                        </div>
+
+                        <div class="col cart-quantity">
+                            <input type="number" name="cartQuantityProduct_2" id="cartQuantityProduct_2" value="1" min="1" max="9">
+                        </div>
+
+                        <div class="col">
+                            <span id="basePriceProduct_2" style="display: none;">120</span>
+                            <span>$</span><span id="productFinal_2">120</span>
+                        </div>
+
+                        <div class="col"><span class="fa fa-times-circle" onclick="deleteItemFromCart(this.parentElement)"></span></div>
+                        <hr>
+                    </div>
+
+
+
+                </div>
+
+
+
+            </div>
+            <div class="col-md-3 summary">
+                <div><h5><b>Summary</b></h5></div>
+                <hr>
+                <div class="row">
+                    <div class="col" id="cartItemCountSummary" style="padding-left:0;">ITEMS 3</div>
+                    <div class="col text-right">$<span id="finalSummaryPrice"></span></div>
+                </div>
+                <form>
+                    <p>SHIPPING</p>
+                    <textarea name="addressField" id="addressField" cols="23" rows="2" placeholder="Address" required></textarea>
+                    <select id="shippingCharges" onchange="calcPriceFinal()"><option value="0">Standard-Delivery- $5</option><option value="1">Fast Delivery -  $10</option></select>
+                    <p>GIVE CODE</p>
+                    <input id="code" placeholder="Enter your code">
+                    <span class="btn" onclick="calcPriceFinal()">APPLY CODE</span>
+                    <center><span id="applyCodeResult"></span></center>
+                </form>
+                <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                    <div class="col">TOTAL PRICE</div>
+                    <div class="col text-right">$<span id="checkoutPrice"></span></div>
+                </div>
+                <button class="btn">CHECKOUT</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section cssFile
+{
+    @Scripts.Render("~/Cart/js")
+}
