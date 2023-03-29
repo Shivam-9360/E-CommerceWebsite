@@ -33,9 +33,11 @@ namespace ECommerceWebsite.Controllers
 
             string productCategory = categorySort == 1 ? "Sneakers" : categorySort == 2 ? "Formals" : categorySort == 3 ? "Sports Shoes" : "No Category";
 
-            var productListModel = new ProductListModel();
-            productListModel.CategorySort = categorySort;
-            productListModel.PriceSort = priceSort;
+            var productListModel = new ProductListModel
+            {
+                CategorySort = categorySort,
+                PriceSort = priceSort
+            };
             using (var databaseEntity = new SoleStoreDBEntities())
             {
                 if (categorySort != 0 && priceSort != 0)
