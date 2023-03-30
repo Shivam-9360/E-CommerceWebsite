@@ -210,3 +210,7 @@ footer .copyright {
         cursor: pointer;
         scale: 1.1;
 }
+
+.prod-inner-span-bold {
+    font-weight: 700;
+}
