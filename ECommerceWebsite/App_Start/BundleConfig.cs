@@ -18,7 +18,7 @@ namespace ECommerceWebsite
                         "~/Scripts/shop*"));
 
             bundles.Add(new ScriptBundle("~/Cart/js").Include(
-                        "~/Scripts/shop*"));
+                        "~/Scripts/cart*"));
 
             bundles.Add(new ScriptBundle("~/Product/js").Include(
                         "~/Scripts/lightslider*",
