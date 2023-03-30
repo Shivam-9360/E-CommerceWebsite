@@ -27,6 +27,7 @@
         }
 
 #sortFilterDrops {
+    z-index:110;
     display: none;
     position: relative;
     background-color: gray;
