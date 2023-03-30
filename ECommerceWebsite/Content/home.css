@@ -9,8 +9,8 @@
     font-family: 'Alata', sans-serif;
 }
 
-.best-sellers {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.prod-box {
+    border: 2px solid #899194;
+    width: 20%;
+    height: 30%;
 }
