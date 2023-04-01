@@ -16,6 +16,10 @@ namespace ECommerceWebsite.Controllers
             using (var databaseEntity = new SoleStoreDBEntities())
             {
                 var product = databaseEntity.Products.Where(s => s.Product_ID == productID).FirstOrDefault<Product>();
+                
+                ProductListModel similiarProducts = new ProductListModel();
+                similiarProducts.ProductList.AddRange(databaseEntity.Products.Where(s => s.Product_ID != productID && s.Category == product.Category).Take(3).ToList<Product>());
+
                 if (product != null)
                 {
                     var productModel = new ProductModel()
@@ -31,6 +35,7 @@ namespace ECommerceWebsite.Controllers
                         Stock = product.Stock,
                         Category = product.Category,
                         Reviews = ReviewModelHelpers.ToReviewModelList(databaseEntity.Reviews.Where(s => s.Product_ID == product.Product_ID).ToList()),
+                        SimiliarProducts = similiarProducts
                     };
                     return View(productModel);
                 }

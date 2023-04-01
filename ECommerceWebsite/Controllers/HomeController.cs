@@ -12,7 +12,23 @@ namespace ECommerceWebsite.Controllers
         public ActionResult Index()
         {
             ViewBag.Title = "HOME";
-            return View();
+
+            List<Product> productList = new List<Product>();
+            using (var databaseEntity = new SoleStoreDBEntities())
+            {
+                productList.Add(databaseEntity.Products.Where(s => s.Category == "Sneakers").FirstOrDefault());
+                productList.Add(databaseEntity.Products.Where(s => s.Category == "Formals").FirstOrDefault());
+                productList.Add(databaseEntity.Products.Where(s => s.Category == "Sports Shoes").FirstOrDefault());
+            }
+
+            var productListModel = new ProductListModel
+            {
+                CategorySort = 0,
+                PriceSort = 0,
+                ProductList = productList,
+            };
+
+            return View(productListModel);
         }
 
         public ActionResult AboutUs()
@@ -33,46 +49,49 @@ namespace ECommerceWebsite.Controllers
 
             string productCategory = categorySort == 1 ? "Sneakers" : categorySort == 2 ? "Formals" : categorySort == 3 ? "Sports Shoes" : "No Category";
 
-            var productListModel = new ProductListModel
-            {
-                CategorySort = categorySort,
-                PriceSort = priceSort
-            };
+            List<Product> productList = new List<Product>();
             using (var databaseEntity = new SoleStoreDBEntities())
             {
                 if (categorySort != 0 && priceSort != 0)
                 {
                     if (priceSort == 1)
                     {
-                        productListModel.ProductList = databaseEntity.Products.Where(s => s.Category == productCategory).OrderBy(s => s.Price).ToList<Product>();
+                        productList = databaseEntity.Products.Where(s => s.Category == productCategory).OrderBy(s => s.Price).ToList<Product>();
                     }
                     else
                     {
-                        productListModel.ProductList = databaseEntity.Products.Where(s => s.Category == productCategory).OrderByDescending(s => s.Price).ToList<Product>();
+                        productList = databaseEntity.Products.Where(s => s.Category == productCategory).OrderByDescending(s => s.Price).ToList<Product>();
                     }
                 }
                 else if (priceSort != 0)
                 {
                     if (priceSort == 1)
                     {
-                        productListModel.ProductList = databaseEntity.Products.OrderBy(s => s.Price).ToList<Product>();
+                        productList = databaseEntity.Products.OrderBy(s => s.Price).ToList<Product>();
 
                     }
                     else
                     {
-                        productListModel.ProductList = databaseEntity.Products.OrderByDescending(s => s.Price).ToList<Product>();
+                        productList = databaseEntity.Products.OrderByDescending(s => s.Price).ToList<Product>();
                     }
                 }
                 else if (categorySort != 0)
                 {
-                    productListModel.ProductList = databaseEntity.Products.Where(s => s.Category == productCategory).ToList<Product>();
+                    productList = databaseEntity.Products.Where(s => s.Category == productCategory).ToList<Product>();
                 }
                 else
                 {
-                    productListModel.ProductList = databaseEntity.Products.ToList<Product>();
+                    productList = databaseEntity.Products.ToList<Product>();
                 }
-
             }
+
+            var productListModel = new ProductListModel
+            {
+                CategorySort = categorySort,
+                PriceSort = priceSort,
+                ProductList = productList,
+            };
+
             return View(productListModel);
         }
     }

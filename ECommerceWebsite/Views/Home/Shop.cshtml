@@ -28,14 +28,7 @@
 </div>
 
 <div class="main-box" id="shopMainBox">
-    @foreach (var currentProduct in Model.ProductList)
-    {
-        <div class="prod-box">
-            <img src="@currentProduct.ImagePath_1" alt="">
-            <span class="prod-inner-span-bold">@currentProduct.Product_Name</span>
-            <span>₹ @currentProduct.Price</span>
-        </div>
-    }
+    @Html.Partial("_ProductList", Model)
 </div>
 
 @section scriptFile

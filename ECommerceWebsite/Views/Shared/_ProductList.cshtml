@@ -1,0 +1,10 @@
+﻿@model ECommerceWebsite.Models.ProductListModel
+
+@foreach (var currentProduct in Model.ProductList)
+{
+    <div class="prod-box" onclick="goToProduct(@currentProduct.Product_ID)">
+        <img src="@currentProduct.ImagePath_1" alt="">
+        <span class="prod-inner-span-bold">@currentProduct.Product_Name</span>
+        <span>₹ @currentProduct.Price</span>
+    </div>
+}
