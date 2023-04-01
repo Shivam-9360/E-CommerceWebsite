@@ -20,7 +20,6 @@ function calcQuantity() {
     else {
         el.innerHTML = "Items " + counter;
     }
-    // el2.innerHTML = " ITEMS " + counter;
 }
 function calcPriceFinal() {
     var p = 0;
@@ -48,24 +47,30 @@ function calcPriceFinal() {
     finalSumPrice.innerHTML = p;
 
 
-    var tenDollorDiscounts = ["discount10", "offer10", "solestore10"];
-    var twentyDollorDiscounts = ["discount20", "offer20", "solestore20"];
+    var tenPercentDiscounts = ["discount10", "offer10", "solestore10"];
+    var twentyPercentDiscounts = ["ams20", "AMS20", "solestore20"];
+    var fiftyPercentDiscounts = ["ams50", "AMS50"]
     var checkcodeInput = document.getElementById("code").value;
     var outputCode = document.getElementById("applyCodeResult");
-
+    var loopLength = Math.max(tenPercentDiscounts.length, twentyPercentDiscounts.length, fiftyPercentDiscounts.length);
     var discount = 0;
-    for (let i = 0; i < 3; i++) {
-        if (checkcodeInput == tenDollorDiscounts[i]) {
-            console.log("control here");
-            discount = 10;
-            outputCode.innerHTML = '10 $ Discount Coupon Applied';
-            setTimeout(function () { outputCode.innerHTML = ""; }, 3000);
+    for (let i = 0; i < loopLength; i++) {
+        if (checkcodeInput == tenPercentDiscounts[i]) {
+            discount = (10 * p) / 100;
+            outputCode.innerHTML = '10 % Discount Coupon Applied ( ' + tenPercentDiscounts[i] + ' )';
+            setTimeout(function () { outputCode.style.display = "none"; }, 3000);
             break;
         }
-        else if (checkcodeInput == twentyDollorDiscounts[i]) {
-            discount = 20;
-            outputCode.innerHTML = '20 $ Discount Coupon Applied';
-            setTimeout(function () { outputCode.innerHTML = ""; }, 3000);
+        else if (checkcodeInput == twentyPercentDiscounts[i]) {
+            discount = (20 * p) / 100;
+            outputCode.innerHTML = '20 % Discount Coupon Applied ( ' + twentyPercentDiscounts[i] + ' )';
+            setTimeout(function () { outputCode.style.display = "none"; }, 3000);
+            break;
+        }
+        else if (checkcodeInput == fiftyPercentDiscounts[i]) {
+            discount = (50 * p) / 100;
+            outputCode.innerHTML = '50 % Discount Coupon Applied ( ' + fiftyPercentDiscounts[i] + ' )';
+            setTimeout(function () { outputCode.style.display = ""; }, 3000);
             break;
         }
 
@@ -76,14 +81,12 @@ function calcPriceFinal() {
     var shipping = document.getElementById("shippingCharges").value;
     var checkoutP = document.getElementById("checkoutPrice");
     if (shipping == 0) {
-        checkoutP.innerHTML = p + 5;
+        checkoutP.innerHTML = p + 200;
 
     }
     else if (shipping == 1) {
-        checkoutP.innerHTML = p + 10;
+        checkoutP.innerHTML = p + 400;
     }
-
-
 
 }
 function deleteItemFromCart(id) {
@@ -94,3 +97,13 @@ function deleteItemFromCart(id) {
 
 calcQuantity();
 calcPriceFinal();
+
+function darkMode() {
+    var mainCart = document.getElementById("mainCart");
+    mainCart.classList.add("bg-dark");
+}
+
+function lightMode() {
+    var mainCart = document.getElementById("mainCart");
+    mainCart.classList.remove("bg-dark");
+}

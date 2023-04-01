@@ -42,3 +42,48 @@ function submitReview()
         }
     });
 }
+
+function addToCartClicked() {
+
+    var cartAddButton = document.getElementById("cartAddButton");
+    cartAddButton.innerHTML = '<i class="fa fa-shopping-bag"></i> Added to cart'
+    cartAddButton.disabled = true;
+    cartAddButton.style.backgroundColor = "gray"
+}
+function addToWishlistClicked() {
+    var wishlistAddButton = document.getElementById("wishlistAddButton");
+    wishlistAddButton.innerHTML = '<i class="fa fa-heart"></i> Wishlisted'
+    wishlistAddButton.disabled = true;
+    wishlistAddButton.style.backgroundColor = "gray"
+}
+
+function darkMode() {
+    var similarProductsMainBox = document.getElementById("similarProductsMainBox");
+    for (let i = 0; i < similarProductsMainBox.children.length; i++) {
+        similarProductsMainBox.children[i].classList.remove("prod-box");
+        similarProductsMainBox.children[i].classList.add("prod-box-dark");
+    }
+    var otherReviews = document.getElementById("otherReviews");
+    for (let i = 0; i < otherReviews.children.length; i++) {
+        otherReviews.children[i].classList.add("review-card-dark");
+    }
+    var hiddenReviews = document.getElementById("hiddenReviews");
+    for (let i = 0; i < hiddenReviews.children.length; i++) {
+        hiddenReviews.children[i].classList.add("review-card-dark");
+    }
+}
+function lightMode() {
+    var similarProductsMainBox = document.getElementById("similarProductsMainBox");
+    for (let i = 0; i < similarProductsMainBox.children.length; i++) {
+        similarProductsMainBox.children[i].classList.add("prod-box");
+        similarProductsMainBox.children[i].classList.remove("prod-box-dark");
+    }
+    var otherReviews = document.getElementById("otherReviews");
+    for (let i = 0; i < otherReviews.children.length; i++) {
+        otherReviews.children[i].classList.remove("review-card-dark");
+    }
+    var hiddenReviews = document.getElementById("hiddenReviews");
+    for (let i = 0; i < hiddenReviews.children.length; i++) {
+        hiddenReviews.children[i].classList.remove("review-card-dark");
+    }
+}

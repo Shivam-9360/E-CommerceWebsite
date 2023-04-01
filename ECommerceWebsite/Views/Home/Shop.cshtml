@@ -11,7 +11,7 @@
 </div>
 
 <div class="filter-bar">
-    <span id="filterClick">Filter/Sort <i class="fa fa-filter"></i></span>
+    <span id="filterClick" class="headings-for-page">Filter/Sort <i class="fa fa-filter"></i></span>
     <div id="sortFilterDrops">
         <select name="filter" id="categoryDropDown" onchange="searchByFilters()">
             <option value="0">Filter : Category</option>
@@ -27,13 +27,13 @@
     </div>
 </div>
 
-<div class="main-box">
+<div class="main-box" id="shopMainBox">
     @foreach (var currentProduct in Model.ProductList)
     {
         <div class="prod-box">
             <img src="@currentProduct.ImagePath_1" alt="">
-            <span>@currentProduct.Product_Name</span>
-            <span>@currentProduct.Price</span>
+            <span class="prod-inner-span-bold">@currentProduct.Product_Name</span>
+            <span>₹ @currentProduct.Price</span>
         </div>
     }
 </div>

@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sole Store</title>
+    <title>SoleStore</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -14,7 +14,7 @@
 
 <body>
     <!-- NavBar -->
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg" id="navBar">
         <div class="container-fluid">
             <!-- Brand-->
             <a class="navbar-brand brand" href="@Url.Action("Index", "Home", new { id = "" }) ">Sole<span class="brand-item-color">Store</span></a>
@@ -22,7 +22,7 @@
             <!-- Collapse Toggle Button-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon" id="navBarToggler"></span>
             </button>
             <!-- Collapse Toggle Button-->
             <!-- NavBar Menu-->
@@ -46,7 +46,7 @@
                            style="font-family:Arial, FontAwesome" aria-label="Search">
                 </form>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 nav-align-item nav-icons">
-                    <li class="nav-item">
+                    <li class="nav-item" onclick="layoutDark()">
                         <a class="nav-link" href="#"><i class="fa fa-adjust" aria-hidden="true"></i></a>
                     </li>
                     <li class="nav-item">
@@ -88,7 +88,7 @@
     </div>
     <!-- NewsLetter -->
     <!-- Footer -->
-    <footer class="text-center text-lg-start bg-light text-muted">
+    <footer id="footerClass" class="text-center text-lg-start bg-light text-muted">
         <!-- Section: Social media -->
         <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
             <!-- Left -->
@@ -125,8 +125,8 @@
                     <!-- Grid column -->
                     <div class="col-md-3 col-lg-4 col-xl-3  mb-4 footer-logo">
                         <!-- Content -->
-                        <h3 class="mb-4 brand">Sole<span class="brand-item-color">Store</span></h3>
-                        <img src="../Images/lightmode_logo.png" class="images" alt="logo">
+                        <h3 class="mb-4 brand" id="footerHeaderDarkMode">Sole<span class="brand-item-color">Store</span></h3>
+                        <img src="../Images/lightmode_logo.png" class="images" alt="logo" id="footerLogoImage">
                     </div>
 
                     <!-- Grid column -->
@@ -137,10 +137,10 @@
                             Products
                         </h6>
                         <p>
-                            <a href="#!" class="text-reset">Casuals</a>
+                            <a href="#!" class="text-reset">Sneakers</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Sneakers</a>
+                            <a href="#!" class="text-reset">Sport Shoes</a>
                         </p>
                         <p>
                             <a href="#!" class="text-reset">Formals</a>

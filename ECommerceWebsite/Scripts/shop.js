@@ -10,9 +10,21 @@ function searchByFilters()
 }
 
 $(document).ready(function () {
-    $("#filterClick").click(function () {
-        $("#sortFilterDrops").slideToggle();
-    });
     categoryDropDown.selectedIndex = selectedCategoryDropDown;
     priceDropDown.selectedIndex = selectedPriceDropDown;
 });
+
+function darkMode() {
+    var shopMainBox = document.getElementById("shopMainBox");
+    for (let i = 0; i < shopMainBox.children.length; i++) {
+        shopMainBox.children[i].classList.remove("prod-box");
+        shopMainBox.children[i].classList.add("prod-box-dark");
+    }
+}
+function lightMode() {
+    var shopMainBox = document.getElementById("shopMainBox");
+    for (let i = 0; i < shopMainBox.children.length; i++) {
+        shopMainBox.children[i].classList.add("prod-box");
+        shopMainBox.children[i].classList.remove("prod-box-dark");
+    }
+}

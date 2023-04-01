@@ -62,7 +62,6 @@
     outline: none;
     margin-bottom: 20px;
     border: 1px solid #899194;
-    background-color: transparent;
     transition: 0.3s ease-in-out;
 }
 
@@ -92,3 +91,16 @@
     .people-details p {
         margin-bottom: 0px;
     }
+
+@media screen and (max-width: 500px) {
+    #laptopContactBanner {
+        display: none;
+    }
+
+    #contactPageBanner {
+        background-image: url(../images/contactUs_phone_bg.png);
+        background-size: cover;
+        width: 100%;
+        height: 200px;
+    }
+}

@@ -9,39 +9,31 @@
 
 .filter-bar {
     text-align: center;
-    height: 40px;
     background-color: rgba(128, 128, 128, 0.459);
 }
 
-    .filter-bar span {
-        font-size: 20px;
-        font-weight: 600;
-        align-items: center;
-        vertical-align: middle;
-        transition: .3s ease-in-out;
-    }
-
-        .filter-bar span:hover {
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-#sortFilterDrops {
-    z-index:110;
-    display: none;
-    position: relative;
-    background-color: gray;
-    padding: 30px;
-    margin: 30px;
+.filter-bar span {
+    font-size: 20px;
+    font-weight: 600;
+    align-items: center;
+    vertical-align: middle;
+    transition: .3s ease-in-out;
 }
 
-    #sortFilterDrops select {
+#sortFilterDrops {
+    position: relative;
+    background-color: gray;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+#sortFilterDrops select {
         width: 35vw;
         height: 50px;
         outline: none;
         border-radius: 5px;
         text-align: center;
-    }
+}
 
 @media screen and (max-width: 500px) {
     #laptopShopBanner {

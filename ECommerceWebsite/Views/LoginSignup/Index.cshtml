@@ -13,7 +13,7 @@
             <div class="row justify-content-center inner-contents">
                 <div class="col-md-8">
                     <div class="mb-4">
-                        <h3>LOGIN</h3>
+                        <h3 class="headings-for-page">LOGIN</h3>
                     </div>
                     <form action="@Url.Action("Login", "LoginSignup", new { id = "" })" onsubmit="return check_login_form()" method="post">
                         <div class="form-group">
@@ -21,15 +21,6 @@
                         </div>
                         <div class="form-group mb-4">
                             <input type="password" class="form-control" id="logpassword" placeholder="Password" name="Password" required minlength="8">
-                        </div>
-
-                        <div class="d-flex mb-3 align-items-center forgot-link">
-                            <div>
-                                <input type="checkbox" checked="checked" />
-                                <label class="mb-0"><span class="caption">Remember me</span></label>
-                            </div>
-                            <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password?</a></span>
-
                         </div>
 
                         <input type="submit" value="Log In" class="btn btn-block login-button">
@@ -67,7 +58,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="mb-4">
-                        <h3>SIGN UP</h3>
+                        <h3 class="headings-for-page">SIGN UP</h3>
                     </div>
                     <form action="@Url.Action("SignUp", "LoginSignup", new { id = "" })" onsubmit="return check_signup_form()" method="post">
                         <div class="form-group mb-4">
@@ -94,13 +85,7 @@
                                    placeholder="Confirm Password" minlength="8" required onkeyup="pass_confirm()">
                             <span id="confirmPasswordError"></span>
                         </div>
-                        <div class="d-flex mb-3 align-items-center forgot-link">
-                            <div>
-                                <input type="checkbox" checked="checked" />
-                                <label class="mb-0"><span class="caption">Remember me</span></label>
-                            </div>
-                            <span class="ml-auto"><a href="#" class="forgot-pass">Forgot Password?</a></span>
-                        </div>
+                       
                         <div class="d-flex mb-3">
                             <span>
                                 <input type="checkbox" name="terms-and-conditions" id="termsAndConditions"
@@ -123,13 +108,13 @@
                         </div>
                         <span class="d-block text-left my-4 text-muted">&mdash; or Sign Up with &mdash;</span>
                         <div class="social-login">
-                            <a href="#" class="facebook">
+                            <a href="https://facebook.com/" class="facebook">
                                 <span class="icon-facebook mr-3"><i class="fa fa-facebook-f"></i></span>
                             </a>
-                            <a href="#" class="twitter">
+                            <a href="https://twitter.com/" class="twitter">
                                 <span class="icon-twitter mr-3"><i class="fa fa-twitter"></i></span>
                             </a>
-                            <a href="#" class="google">
+                            <a href="https://www.google.com/" class="google">
                                 <span class="icon-google mr-3"><i class="fa fa-google"></i></span>
                             </a>
                         </div>
@@ -146,29 +131,19 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="termsAndConditionsModalLabel">Terms and Conditions</h1>
+                <h1 class="modal-title fs-5 headings-for-page" id="termsAndConditionsModalLabel">Terms and Conditions</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>
-                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                    Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero
-                    sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
-                    Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed,
-                    commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros
-                    ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
-                    facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu
-                    vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
-                    porttitor, facilisis luctus, metus
-                    Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                    Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero
-                    sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.
-                    Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed,
-                    commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros
-                    ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar
-                    facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu
-                    vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan
-                    porttitor, facilisis luctus, metus
+                    Welcome to the SOLESTORE community!  You are reading these Terms because you are using a SOLESTORE website, digital experience, social media platform, mobile app, wearable technology, or one of our other products or services, all of which are part of SOLESTORE’s Platform.  You may access the Platform through a computer, mobile phone, tablet, console, or other technology, which we refer to here as a “Device”.  Your carrier's normal rates and fees apply to your Device.<br><br>
+                    These Terms create a legally binding agreement between you and SOLESTORE and its affiliates (which we may refer to as “SOLESTORE,” “we,” “us,” or “our”) regarding your use of the Platform.<br><br>
+                    Please review our List of Local Entities for the name of the SOLESTORE entity responsible for providing the Platform to you and the appropriate contact information. A few important points: <br><br>
+                    •	Our Terms May Change.  Some jurisdictions do not permit unilateral updates or changes to consumer terms, so this paragraph may not apply to you. We may update these Terms from time to time.  If a material change is made, we will post a notice on the Platform or send you a notification.  Read through any changes, and if you do not agree to them, please stop using the Platform.  If you continue to use our Platform after we notify you of changes, you will be deemed to have accepted the updated Terms, except to the extent prohibited by applicable law.<br><br>
+                    •	Terms of Sale.  By making any purchase with us, you also agree to the Terms of Sale that apply in your country or region. <br><br>
+                    •	Privacy Policy.  Our Privacy Policy describes the collection and use of personal information on the Platform and applies to your use of the Platform. <br><br>
+                    •	Important Notice for Amateur Athletes.  You are responsible for ensuring that your participation on the Platform does not affect your eligibility as an amateur athlete.  Please check with your amateur athletic association for the rules that apply to you.  SOLESTORE is not responsible or liable for your use of the Platform resulting in your ineligibility as an amateur athlete. <br><br>
+
                 </p>
             </div>
             <div class="modal-footer">

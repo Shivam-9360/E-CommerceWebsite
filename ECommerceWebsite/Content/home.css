@@ -4,9 +4,9 @@
     box-shadow: 0px 5px 10px black;
     border-radius: 50%;
 }
-
-#shopByCategoryHead {
-    font-family: 'Alata', sans-serif;
+.category-shop-button-dark:hover {
+    box-shadow: 0px 5px 10px white;
+    border-radius: 50%;
 }
 
 .best-sellers {
