@@ -48,9 +48,9 @@
                 <div style="margin-top:3vh;">
                     <span style="font-weight: 600; ">Select Size</span>
                     <label for="termsAndConditions">
-                        <p id="terms-label" data-bs-toggle="modal" data-bs-target="#sizeChart">
+                        <span id="terms-label" data-bs-toggle="modal" data-bs-target="#sizeChart">
                             Size Guide <i class="fa fa-arrow-right"></i>
-                        </p>
+                        </span>
                     </label>
                     <div class="modal fade" id="sizeChart" tabindex="-1" aria-labelledby="sizeChartLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -99,7 +99,6 @@
         </div>
 
     </div>
-
 
     <div class="row prod-brief m-5">
         <center>
@@ -161,250 +160,46 @@
             </center>
 
             <div id="otherReviews">
-
-                <div class="review-card">
-
-                    <div id="userDetsSection">
-                        <img src="../images/aaditya_profile.jpeg" alt="Profile" class="user_profileImage">
-                        <span id="user_profileEmail">
-                            example@gmail.com
-                        </span>
-                    </div>
-                    <center>
-                        <hr>
-                    </center>
-
-                    <div class="user_review">
-                        <span id="userExperience">Good</span>
-                        <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore et incidunt iste unde magni nostrum,
-                            sequi vitae excepturi est vel, voluptates facere magnam. Laudantium quos consequatur saepe fugiat animi
-                            delectus?
-                        </p>
-                    </div>
-
-                </div>
-                <div class="review-card">
-
-                    <div id="userDetsSection">
-                        <img src="../images/aaditya_profile.jpeg" alt="Profile" class="user_profileImage">
-                        <span id="user_profileEmail">
-                            example@gmail.com
-                        </span>
-                    </div>
-                    <center>
-                        <hr>
-                    </center>
-
-                    <div class="user_review">
-                        <span id="userExperience">Good</span>
-                        <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore et incidunt iste unde magni nostrum,
-                            sequi vitae excepturi est vel, voluptates facere magnam. Laudantium quos consequatur saepe fugiat animi
-                            delectus?
-                        </p>
-                    </div>
-
-                </div>
-                <div class="review-card">
-                    <div id="userDetsSection">
-                        <img src="../images/aaditya_profile.jpeg" alt="Profile" class="user_profileImage">
-                        <span id="user_profileEmail">
-                            example@gmail.com
-                        </span>
-                    </div>
-                    <center>
-                        <hr>
-                    </center>
-
-                    <div class="user_review">
-                        <span id="userExperience">Good</span>
-                        <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore et incidunt iste unde magni nostrum,
-                            sequi vitae excepturi est vel, voluptates facere magnam. Laudantium quos consequatur saepe fugiat animi
-                            delectus?
-                        </p>
-                    </div>
-
-                </div>
-
+                @for (int i = 0; i < 3; i++)
+                {
+                    if (i < Model.Reviews.Count)
+                    {
+                        <div class="review-card">
+                            <div id="userDetsSection">
+                                <img src="../images/aaditya_profile.jpeg" alt="Profile" class="user_profileImage">
+                                <span id="user_profileEmail">
+                                    @Model.Reviews[i].Customer_Name
+                                </span>
+                            </div>
+                            <center><hr></center>
+                            <div class="user_review">
+                                <span id="userExperience">@Model.Reviews[i].Liking</span>
+                                <p>@Model.Reviews[i].Description</p>
+                            </div>
+                        </div>
+                    }
+                }
             </div>
 
             <h4 id="hiddenReviewLayoutClick" class="headings-for-page">Other Reviews</h4>
-
             <div class="outer-div-review">
                 <div class="hidden-otherReview" id="hiddenReviews">
-
-                    <div class="review-card">
-                        <div id="userDetsSection">
-                            <img src="../images/aaditya_profile.jpeg" alt="Profile" class="user_profileImage">
-                            <span id="user_profileEmail">
-                                example@gmail.com
-                            </span>
+                    @for (int i = 3; i < Model.Reviews.Count; i++)
+                    {
+                        <div class="review-card">
+                            <div id="userDetsSection">
+                                <img src="../images/aaditya_profile.jpeg" alt="Profile" class="user_profileImage">
+                                <span id="user_profileEmail">
+                                    @Model.Reviews[i].Customer_Name
+                                </span>
+                            </div>
+                            <center><hr></center>
+                            <div class="user_review">
+                                <span id="userExperience">@Model.Reviews[i].Liking</span>
+                                <p>@Model.Reviews[i].Description</p>
+                            </div>
                         </div>
-
-                        <center>
-                            <hr>
-                        </center>
-
-                        <div class="user_review">
-                            <span id="userExperience">Good</span>
-                            <p>
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore et incidunt iste unde magni nostrum,
-                                sequi vitae excepturi est vel, voluptates facere magnam. Laudantium quos consequatur saepe fugiat animi
-                                delectus?
-                            </p>
-                        </div>
-
-                    </div>
-                    <div class="review-card">
-
-                        <div id="userDetsSection">
-                            <img src="../images/aaditya_profile.jpeg" alt="Profile" class="user_profileImage">
-                            <span id="user_profileEmail">
-                                example@gmail.com
-                            </span>
-                        </div>
-                        <center>
-                            <hr>
-                        </center>
-
-                        <div class="user_review">
-                            <span id="userExperience">Good</span>
-                            <p>
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore et incidunt iste unde magni nostrum,
-                                sequi vitae excepturi est vel, voluptates facere magnam. Laudantium quos consequatur saepe fugiat animi
-                                delectus?
-                            </p>
-                        </div>
-
-                    </div>
-                    <div class="review-card">
-                        <div id="userDetsSection">
-                            <img src="../images/aaditya_profile.jpeg" alt="Profile" class="user_profileImage">
-                            <span id="user_profileEmail">
-                                example@gmail.com
-                            </span>
-                        </div>
-                        <center>
-                            <hr>
-                        </center>
-
-                        <div class="user_review">
-                            <span id="userExperience">Good</span>
-                            <p>
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore et incidunt iste unde magni nostrum,
-                                sequi vitae excepturi est vel, voluptates facere magnam. Laudantium quos consequatur saepe fugiat animi
-                                delectus?
-                            </p>
-                        </div>
-
-                    </div>
-                    <div class="review-card">
-                        <div id="userDetsSection">
-                            <img src="../images/aaditya_profile.jpeg" alt="Profile" class="user_profileImage">
-                            <span id="user_profileEmail">
-                                example@gmail.com
-                            </span>
-                        </div>
-                        <center>
-                            <hr>
-                        </center>
-
-                        <div class="user_review">
-                            <span id="userExperience">Good</span>
-                            <p>
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore et incidunt iste unde magni nostrum,
-                                sequi vitae excepturi est vel, voluptates facere magnam. Laudantium quos consequatur saepe fugiat animi
-                                delectus?
-                            </p>
-                        </div>
-
-                    </div>
-                    <div class="review-card">
-                        <div id="userDetsSection">
-                            <img src="../images/aaditya_profile.jpeg" alt="Profile" class="user_profileImage">
-                            <span id="user_profileEmail">
-                                example@gmail.com
-                            </span>
-                        </div>
-                        <center>
-                            <hr>
-                        </center>
-
-                        <div class="user_review">
-                            <span id="userExperience">Good</span>
-                            <p>
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore et incidunt iste unde magni nostrum,
-                                sequi vitae excepturi est vel, voluptates facere magnam. Laudantium quos consequatur saepe fugiat animi
-                                delectus?
-                            </p>
-                        </div>
-
-                    </div>
-                    <div class="review-card">
-                        <div id="userDetsSection">
-                            <img src="../images/aaditya_profile.jpeg" alt="Profile" class="user_profileImage">
-                            <span id="user_profileEmail">
-                                example@gmail.com
-                            </span>
-                        </div>
-                        <center>
-                            <hr>
-                        </center>
-
-                        <div class="user_review">
-                            <span id="userExperience">Good</span>
-                            <p>
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore et incidunt iste unde magni nostrum,
-                                sequi vitae excepturi est vel, voluptates facere magnam. Laudantium quos consequatur saepe fugiat animi
-                                delectus?
-                            </p>
-                        </div>
-
-                    </div>
-                    <div class="review-card">
-                        <div id="userDetsSection">
-                            <img src="../images/aaditya_profile.jpeg" alt="Profile" class="user_profileImage">
-                            <span id="user_profileEmail">
-                                example@gmail.com
-                            </span>
-                        </div>
-                        <center>
-                            <hr>
-                        </center>
-
-                        <div class="user_review">
-                            <span id="userExperience">Good</span>
-                            <p>
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore et incidunt iste unde magni nostrum,
-                                sequi vitae excepturi est vel, voluptates facere magnam. Laudantium quos consequatur saepe fugiat animi
-                                delectus?
-                            </p>
-                        </div>
-
-                    </div>
-                    <div class="review-card">
-                        <div id="userDetsSection">
-                            <img src="../images/aaditya_profile.jpeg" alt="Profile" class="user_profileImage">
-                            <span id="user_profileEmail">
-                                example@gmail.com
-                            </span>
-                        </div>
-                        <center>
-                            <hr>
-                        </center>
-
-                        <div class="user_review">
-                            <span id="userExperience">Good</span>
-                            <p>
-                                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolore et incidunt iste unde magni nostrum,
-                                sequi vitae excepturi est vel, voluptates facere magnam. Laudantium quos consequatur saepe fugiat animi
-                                delectus?
-                            </p>
-                        </div>
-
-                    </div>
+                    }
                 </div>
             </div>
 

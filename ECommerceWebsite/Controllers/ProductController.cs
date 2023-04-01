@@ -1,5 +1,6 @@
 ﻿using ECommerceWebsite.Models;
 using ECommerceWebsite.Utilities;
+using ECommerceWebsite.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace ECommerceWebsite.Controllers
                         Price = product.Price,
                         Stock = product.Stock,
                         Category = product.Category,
-                        Reviews = databaseEntity.Reviews.Where(s => s.Product_ID == product.Product_ID).ToList(),
+                        Reviews = ReviewModelHelpers.ToReviewModelList(databaseEntity.Reviews.Where(s => s.Product_ID == product.Product_ID).ToList()),
                     };
                     return View(productModel);
                 }

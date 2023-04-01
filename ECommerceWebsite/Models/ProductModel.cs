@@ -17,6 +17,6 @@ namespace ECommerceWebsite.Models
         public string ImagePath_4 { get; set; }
         public int Stock { get; set; }
         public int? Price { get; set; }
-        public List<Review> Reviews { get; set; }
+        public List<ReviewModel> Reviews { get; set; }
     }
 }
