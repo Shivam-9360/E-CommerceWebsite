@@ -258,6 +258,10 @@
     display: contents;
 }
 
+#viewMoreProducts:hover{
+    cursor:pointer;
+}
+
 @media screen and (max-width: 768px) {
     .prod-image {
         height: auto;

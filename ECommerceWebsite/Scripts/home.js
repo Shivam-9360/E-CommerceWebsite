@@ -26,3 +26,9 @@ function lightMode() {
         categoryButton[i].classList.remove("category-shop-button-dark");
     }
 }
+
+/* Changing window url according to product-id */
+function goToProduct(productID) {
+    var searchQuery = `?productID=${productID}`;
+    window.location.href = window.location.origin + '/Product/Index' + searchQuery;
+}

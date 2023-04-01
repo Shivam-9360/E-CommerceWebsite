@@ -50,6 +50,7 @@ function addToCartClicked() {
     cartAddButton.disabled = true;
     cartAddButton.style.backgroundColor = "gray"
 }
+
 function addToWishlistClicked() {
     var wishlistAddButton = document.getElementById("wishlistAddButton");
     wishlistAddButton.innerHTML = '<i class="fa fa-heart"></i> Wishlisted'
@@ -72,6 +73,7 @@ function darkMode() {
         hiddenReviews.children[i].classList.add("review-card-dark");
     }
 }
+
 function lightMode() {
     var similarProductsMainBox = document.getElementById("similarProductsMainBox");
     for (let i = 0; i < similarProductsMainBox.children.length; i++) {
@@ -86,4 +88,9 @@ function lightMode() {
     for (let i = 0; i < hiddenReviews.children.length; i++) {
         hiddenReviews.children[i].classList.remove("review-card-dark");
     }
+}
+
+/* Changing window url according to product-id */
+function goToShop() {
+    window.location.href = window.location.origin + '/Home/Shop';
 }

@@ -1,12 +1,16 @@
 ﻿var categoryDropDown = document.getElementById("categoryDropDown");
 var priceDropDown = document.getElementById("priceDropDown");
 
-
 /* Changing window url according to search parameters */
 function searchByFilters()
 {
-    var searchQuery = `?categorySort=${categoryDropDown.value}&priceSort=${priceDropDown.value}`;
-    window.location.href = window.location.origin + window.location.pathname + searchQuery;
+    window.location.search = `?categorySort=${categoryDropDown.value}&priceSort=${priceDropDown.value}`;
+}
+
+/* Changing window url according to product-id */
+function goToProduct(productID) {
+    var searchQuery = `?productID=${productID}`;
+    window.location.href = window.location.origin + '/Product/Index' + searchQuery;
 }
 
 $(document).ready(function () {

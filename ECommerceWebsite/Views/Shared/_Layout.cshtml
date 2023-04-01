@@ -50,10 +50,10 @@
                         <a class="nav-link" href="#"><i class="fa fa-adjust" aria-hidden="true"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="#"><i class="fa fa-heart" aria-hidden="true"></i></a>
+                        <a class="nav-link " aria-current="page" href="@Url.Action("WishList", "Cart", new { })"><i class="fa fa-heart" aria-hidden="true"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+                        <a class="nav-link" href="@Url.Action("Index", "Cart", new { })"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
                     </li>
                     <li class="nav-item" style="border: none;">
                         <a class="nav-link" href="@Url.Action("Index", "LoginSignup", new { id = ""  }) "><i class="fa fa-user" aria-hidden="true"></i></a>
@@ -137,13 +137,13 @@
                             Products
                         </h6>
                         <p>
-                            <a href="#!" class="text-reset">Sneakers</a>
+                            <a href="@Url.Action("Shop", "Home", new { categorySort = 1, priceSort = 0 })" class="text-reset">Sneakers</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Sport Shoes</a>
+                            <a href="@Url.Action("Shop", "Home", new { categorySort = 3, priceSort = 0 })" class="text-reset">Sport Shoes</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Formals</a>
+                            <a href="@Url.Action("Shop", "Home", new { categorySort = 2, priceSort = 0 })" class="text-reset">Formals</a>
                         </p>
                     </div>
                     <!-- Grid column -->
@@ -154,22 +154,22 @@
                             Useful links
                         </h6>
                         <p>
-                            <a href="#!" class="text-reset">Home</a>
+                            <a href="@Url.Action("Index", "Home", new { })" class="text-reset">Home</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">About Us</a>
+                            <a href="@Url.Action("AboutUs", "Home", new { })" class="text-reset">About Us</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Contact Us</a>
+                            <a href="@Url.Action("ContactUs", "Home", new { })" class="text-reset">Contact Us</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Shop</a>
+                            <a href="@Url.Action("Shop", "Home", new { })" class="text-reset">Shop</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Cart</a>
+                            <a href="@Url.Action("Index", "Cart", new { })" class="text-reset">Cart</a>
                         </p>
                         <p>
-                            <a href="#!" class="text-reset">Wish List</a>
+                            <a href="@Url.Action("WishList", "Cart", new { })" class="text-reset">Wish List</a>
                         </p>
                     </div>
                     <!-- Grid column -->

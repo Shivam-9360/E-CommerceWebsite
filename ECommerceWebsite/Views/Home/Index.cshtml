@@ -1,4 +1,6 @@
-﻿@section cssFile
+﻿@model ECommerceWebsite.Models.ProductListModel
+
+@section cssFile
 {
     @Styles.Render("~/Home/css")
 }
@@ -14,16 +16,16 @@
     </div>
     <div class="carousel-inner">
         <div class="carousel-item active" data-bs-interval="2000">
-            <img src="../images/SoleStore_carousel.png" class="d-block w-100">
+            <a href="@Url.Action("Shop", "Home", new { })"><img src="../images/SoleStore_carousel.png" class="d-block w-100"></a>
         </div>
         <div class="carousel-item" data-bs-interval="2000">
-            <img src="../images/formalshoes_carousel.png" class="d-block w-100">
+            <a href="@Url.Action("Shop", "Home", new { categorySort = 2, priceSort = 0 })"><img src="../images/formalshoes_carousel.png" class="d-block w-100"></a>
         </div>
         <div class="carousel-item" data-bs-interval="2000">
-            <img src="../images/sneakers_carousel.png" class="d-block w-100">
+            <a href="@Url.Action("Shop", "Home", new { categorySort = 1, priceSort = 0 })"><img src="../images/sneakers_carousel.png" class="d-block w-100"></a>
         </div>
         <div class="carousel-item" data-bs-interval="2000">
-            <img src="../images/sportsShoes_carousel.png" class="d-block w-100">
+            <a href="@Url.Action("Shop", "Home", new { categorySort = 3, priceSort = 0 })"><img src="../images/sportsShoes_carousel.png" class="d-block w-100"></a>
         </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#homeCarousel" data-bs-slide="prev">
@@ -42,19 +44,19 @@
     </div>
     <div class="row text-center mb-5 ">
         <div class="col-md-4 mb-5">
-            <a href="">
+            <a href="@Url.Action("Shop", "Home", new { categorySort = 1, priceSort = 0 })">
                 <img src="../images/sneakers_circle.png" alt=""
                      class="images category-shop-button">
             </a>
         </div>
         <div class="col-md-4 mb-5">
-            <a href="">
+            <a href="@Url.Action("Shop", "Home", new { categorySort = 2, priceSort = 0 })">
                 <img src="../images/formal_circle.png" alt=""
                      class="images category-shop-button">
             </a>
         </div>
         <div class="col-md-4 mb-5">
-            <a href="">
+            <a href="@Url.Action("Shop", "Home", new { categorySort = 3, priceSort = 0 })">
                 <img src="../images/sports_circle.png" alt=""
                      class="images category-shop-button">
             </a>
@@ -68,23 +70,8 @@
         </div>
     </div>
     <div class="best-sellers" id="bestSeller">
-        <div class="prod-box">
-            <img src="../Products/Casual Wear/Product 1/img1.png" alt="">
-            <span class="prod-inner-span-bold">Product name</span>
-            <span>Product Price</span>
-        </div>
-        <div class="prod-box">
-            <img src="../Products/Casual Wear/Product 1/img1.png" alt="">
-            <span class="prod-inner-span-bold">Product name</span>
-            <span>Product Price</span>
-        </div>
-        <div class="prod-box">
-            <img src="../Products/Casual Wear/Product 1/img1.png" alt="">
-            <span class="prod-inner-span-bold">Product name</span>
-            <span>Product Price</span>
-        </div>
+        @Html.Partial("_ProductList", Model)
     </div>
-
 </div>
 <!-- Home Page -->
 
