@@ -123,3 +123,24 @@ function termsconditions() {
     }
 }
 
+function darkMode() {
+    var loginFrame = document.getElementById("loginFrame");
+    var signupFrame = document.getElementById("signupFrame");
+    var loginSoleStoreLogo = document.getElementById("loginSoleStoreLogo");
+    loginSoleStoreLogo.src = "../images/darkmode_logo.png";
+    var signupSoleStoreLogo = document.getElementById("signupSoleStoreLogo");
+    signupSoleStoreLogo.src = "../images/darkmode_logo.png";
+    loginFrame.classList.add("content-dark");
+    signupFrame.classList.add("content-dark");
+}
+
+function lightMode() {
+    var loginFrame = document.getElementById("loginFrame");
+    var signupFrame = document.getElementById("signupFrame");
+    loginFrame.classList.remove("content-dark");
+    signupFrame.classList.remove("content-dark");
+    var loginSoleStoreLogo = document.getElementById("loginSoleStoreLogo");
+    loginSoleStoreLogo.src = "../images/lightmode_logo.png";
+    var signupSoleStoreLogo = document.getElementById("signupSoleStoreLogo");
+    signupSoleStoreLogo.src = "../images/lightmode_logo.png";
+}
