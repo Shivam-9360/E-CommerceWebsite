@@ -17,7 +17,7 @@ namespace ECommerceWebsite.Helpers
                 {
                     var reviewModel = new ReviewModel()
                     {
-                        Product_Name = databaseEntity.Products.Where(s => s.Product_ID ==  review.Product_ID).FirstOrDefault<Product>().Product_Name,
+                        Product_ID = review.Product_ID,
                         Description = review.Description,
                         Liking = review.Liking,
                         Customer_Name = databaseEntity.Customers.Where(s => s.Customer_ID == review.Customer_ID).FirstOrDefault<Customer>().FullName
