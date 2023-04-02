@@ -29,6 +29,7 @@ namespace ECommerceWebsite.Controllers
                         AuthenticationUtility.CurrentCustomer.FullName = existingCustomer.FullName;
                         AuthenticationUtility.CurrentCustomer.Email = existingCustomer.Email;
                         AuthenticationUtility.CurrentCustomer.PhoneNumber = existingCustomer.PhoneNumber;
+                        AuthenticationUtility.CurrentCustomer.ID = existingCustomer.Customer_ID;
 
                         AuthenticationUtility.IsLoggedIn = true;
 
@@ -55,11 +56,12 @@ namespace ECommerceWebsite.Controllers
                     };
                     (newCustomer.HashPassword, newCustomer.HashSalt) = EncryptionDecryptionUtility.PasswordToHash(customerSignup.Password);
 
-                    AuthenticationUtility.CurrentCustomer = customerSignup;
-                    AuthenticationUtility.IsLoggedIn = true;
-
                     databaseEntity.Customers.Add(newCustomer);
                     databaseEntity.SaveChanges();
+
+                    AuthenticationUtility.CurrentCustomer = customerSignup;
+                    AuthenticationUtility.CurrentCustomer.ID = databaseEntity.Customers.Where(s => s.Email == customerSignup.Email).FirstOrDefault<Customer>().Customer_ID;
+                    AuthenticationUtility.IsLoggedIn = true;
 
                     return RedirectToAction("Index", "Home");
                 }
@@ -69,6 +71,11 @@ namespace ECommerceWebsite.Controllers
                 }
             }
             
+        }
+
+        public ActionResult UserProfile()
+        {
+            return View();
         }
     }
 }
