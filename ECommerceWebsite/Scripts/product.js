@@ -10,9 +10,17 @@ $(document).ready(function () {
     $("#hiddenReviewLayoutClick").click(function () {
         $(".outer-div-review").toggle();
     });
+
+    if (isAlreadyInCart) {
+        decorateCartButton();
+    }
+
+    if (isAlreadyInWishList) {
+        decorateWishListButton();
+    }
 });
 
-function submitReview()
+function submitReview(ID)
 {
     var dropDownReview = document.getElementById("dropReview");
     var messageReview = document.getElementById("messageReview");
@@ -28,7 +36,7 @@ function submitReview()
         type: "POST",
         url: "/Product/Reviews",
         data: {
-            Product_Name: productName.value,
+            Product_ID: ID,
             Description: messageReview.value,
             Liking: dropDownReview.options[dropDownReview.selectedIndex].text
         },
@@ -43,19 +51,64 @@ function submitReview()
     });
 }
 
-function addToCartClicked() {
-
+function decorateCartButton()
+{
     var cartAddButton = document.getElementById("cartAddButton");
     cartAddButton.innerHTML = '<i class="fa fa-shopping-bag"></i> Added to cart'
     cartAddButton.disabled = true;
-    cartAddButton.style.backgroundColor = "gray"
+    cartAddButton.style.backgroundColor = "gray";
 }
 
-function addToWishlistClicked() {
+function decorateWishListButton() {
     var wishlistAddButton = document.getElementById("wishlistAddButton");
     wishlistAddButton.innerHTML = '<i class="fa fa-heart"></i> Wishlisted'
     wishlistAddButton.disabled = true;
     wishlistAddButton.style.backgroundColor = "gray"
+}
+
+function addToCartClicked(ID)
+{
+    $.ajax({
+        type: "POST",
+        url: "/Cart/AddToCart",
+        data: {
+            productID: ID,
+            isWished: 0
+        },
+        success: function (objectResponse) {
+            alert(objectResponse.Message);
+
+            if (objectResponse.Title == "Success")
+            {
+                decorateCartButton()
+            }
+        },
+        error: function (err) {
+            console.log("Product was not added to cart due to some error. Please try again later.");
+        }
+    });
+}
+
+function addToWishlistClicked(ID) {
+    $.ajax({
+        type: "POST",
+        url: "/Cart/AddToCart",
+        data: {
+            productID: ID,
+            isWished: 1
+        },
+        success: function (objectResponse) {
+            alert(objectResponse.Message);
+
+            f(objectResponse.Title == "Success")
+            {
+                decorateWishListButton()
+            }
+        },
+        error: function (err) {
+            console.log("Product was not added to wishlist due to some error. Please try again later.");
+        }
+    });
 }
 
 function darkMode() {
@@ -93,4 +146,10 @@ function lightMode() {
 /* Changing window url according to product-id */
 function goToShop() {
     window.location.href = window.location.origin + '/Home/Shop';
+}
+
+/* Changing window url according to product-id */
+function goToProduct(productID) {
+    var searchQuery = `?productID=${productID}`;
+    window.location.href = window.location.origin + '/Product/Index' + searchQuery;
 }

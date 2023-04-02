@@ -1,4 +1,6 @@
-﻿@section cssFile
+﻿@model ECommerceWebsite.Models.CartModel
+
+@section cssFile
 {
     @Styles.Render("~/Cart/css")
 }
@@ -17,52 +19,29 @@
                 </div>
 
                 <div id="cartProducts" onchange="calcPriceFinal()">
+                    @for (int i = 0; i < Model.ProductList.Count; i++)
+                    {
+                        <div class="row main align-items-center cart-item">
+                            <div class="col-3 "><img class="img-fluid cart-prod-image" src="@Model.ProductList[i].ImagePath_1"></div>
+                            <div class="col p-2">
+                                <div class="row text-muted">@Model.ProductList[i].Category</div>
+                                <div class="row">@Model.ProductList[i].Product_Name</div>
+                            </div>
 
-                    <div class="row main align-items-center cart-item">
-                        <div class="col-3 "><img class="img-fluid cart-prod-image" src="../Images/Products/Sneakers/Air Jordan 1 Mid SE/image1.jpg"></div>
-                        <div class="col p-2">
-                            <div class="row text-muted">Casual</div>
-                            <div class="row">Nike Lebron 5</div>
+                            <div class="col cart-quantity">
+                                <input type="number" name="@string.Format("cartQuantityProduct_{0}", (i+1))" onchange="changeQuantity(this, @Model.ProductList[i].Product_ID)" id="@string.Format("cartQuantityProduct_{0}", (i+1))" value="@Model.Quantity[i]" min="1" max="9">
+                            </div>
+
+                            <div class="col">
+                                <span id="@string.Format("basePriceProduct_{0}", (i+1))" style="display: none;">@Model.ProductList[i].Price</span>
+                                <span>₹</span><span id="@string.Format("productFinal_{0}", (i+1))">@(Model.ProductList[i].Price * Model.Quantity[i])</span>
+                            </div>
+
+                            <div class="col"><span class="fa fa-times-circle" onclick="deleteItemFromCart(this.parentElement, @Model.ProductList[i].Product_ID)"></span></div>
+                            <hr>
                         </div>
-
-                        <div class="col cart-quantity">
-                            <input type="number" name="cartQuantityProduct_1" id="cartQuantityProduct_1" value="1" min="1" max="9">
-                        </div>
-
-                        <div class="col">
-                            <span id="basePriceProduct_1" style="display: none;">120</span>
-                            <span>₹</span><span id="productFinal_1">120</span>
-                        </div>
-
-                        <div class="col"><span class="fa fa-times-circle" onclick="deleteItemFromCart(this.parentElement)"></span></div>
-                        <hr>
-                    </div>
-
-                    <div class="row main align-items-center cart-item">
-                        <div class="col-3 "><img class="img-fluid cart-prod-image" src="../Images/Products/Sneakers/Air Jordan 1 Mid SE/image1.jpg"></div>
-                        <div class="col p-2">
-                            <div class="row text-muted">Casual</div>
-                            <div class="row">Nike Lebron 5</div>
-                        </div>
-
-                        <div class="col cart-quantity">
-                            <input type="number" name="cartQuantityProduct_2" id="cartQuantityProduct_2" value="1" min="1" max="9">
-                        </div>
-
-                        <div class="col">
-                            <span id="basePriceProduct_2" style="display: none;">120</span>
-                            <span>₹</span><span id="productFinal_2">120</span>
-                        </div>
-
-                        <div class="col"><span class="fa fa-times-circle" onclick="deleteItemFromCart(this.parentElement)"></span></div>
-                        <hr>
-                    </div>
-
-
-
+                    }
                 </div>
-
-
 
             </div>
             <div class="col-md-3 summary">

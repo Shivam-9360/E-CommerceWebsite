@@ -17,6 +17,7 @@ namespace ECommerceWebsite
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Customer()
         {
+            this.Carts = new HashSet<Cart>();
             this.Reviews = new HashSet<Review>();
         }
     
@@ -26,7 +27,10 @@ namespace ECommerceWebsite
         public string PhoneNumber { get; set; }
         public string HashPassword { get; set; }
         public string HashSalt { get; set; }
+        public string Address { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Cart> Carts { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Review> Reviews { get; set; }
     }

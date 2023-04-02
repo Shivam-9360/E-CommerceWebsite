@@ -22,6 +22,9 @@ namespace ECommerceWebsite.Controllers
 
                 if (product != null)
                 {
+                    var cartItem = databaseEntity.Carts.Where(s =>
+                                        s.Customer_ID == AuthenticationUtility.CurrentCustomer.ID
+                                        && s.Product_ID == product.Product_ID).FirstOrDefault();
                     var productModel = new ProductModel()
                     {
                         ID = product.Product_ID,
@@ -35,7 +38,9 @@ namespace ECommerceWebsite.Controllers
                         Stock = product.Stock,
                         Category = product.Category,
                         Reviews = ReviewModelHelpers.ToReviewModelList(databaseEntity.Reviews.Where(s => s.Product_ID == product.Product_ID).ToList()),
-                        SimiliarProducts = similiarProducts
+                        SimiliarProducts = similiarProducts,
+                        IsInCart = cartItem != null ? cartItem.IsOrdered == false ? cartItem.IsInCart : false : false,
+                        IsInWishList = cartItem != null ? cartItem.IsWished : false,
                     };
                     return View(productModel);
                 }
@@ -62,8 +67,8 @@ namespace ECommerceWebsite.Controllers
             {
                 var newReview = new Review
                 {
-                    Product_ID = databaseEntity.Products.Where(s => s.Product_Name == userReview.Product_Name).FirstOrDefault<Product>().Product_ID,
-                    Customer_ID = databaseEntity.Customers.Where(s => s.Email == AuthenticationUtility.CurrentCustomer.Email).FirstOrDefault<Customer>().Customer_ID,
+                    Product_ID = userReview.Product_ID,
+                    Customer_ID = AuthenticationUtility.CurrentCustomer.ID,
                     Liking = userReview.Liking,
                     Description = userReview.Description
                 };

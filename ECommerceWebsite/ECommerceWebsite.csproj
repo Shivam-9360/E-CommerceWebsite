@@ -129,6 +129,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Cart.cs">
+      <DependentUpon>SoleStoreDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginSignupController.cs" />
@@ -140,6 +143,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ReviewModelHelpers.cs" />
+    <Compile Include="Models\CartModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
     <Compile Include="Models\ProductListModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
@@ -179,7 +183,9 @@
     <Content Include="Content\lightslider.css" />
     <Content Include="Content\login.css" />
     <Content Include="Content\product.css" />
+    <Content Include="Content\profile.css" />
     <Content Include="Content\shop.css" />
+    <Content Include="Content\wishlist.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\cart.js" />
@@ -188,7 +194,9 @@
     <Content Include="Scripts\login.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\product.js" />
+    <Content Include="Scripts\profile.js" />
     <Content Include="Scripts\shop.js" />
+    <Content Include="Scripts\wishlist.js" />
     <Content Include="SoleStoreDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SoleStoreDBModel.edmx</DependentUpon>
@@ -215,13 +223,6 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\LoginSignup\Index.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
-    <EntityDeploy Include="SoleStoreDBModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SoleStoreDBModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="SoleStoreDBModel.edmx.diagram">
-      <DependentUpon>SoleStoreDBModel.edmx</DependentUpon>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -232,6 +233,15 @@
     <Content Include="Views\Home\Shop.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Shared\_ProductList.cshtml" />
+    <EntityDeploy Include="SoleStoreDBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SoleStoreDBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="SoleStoreDBModel.edmx.diagram">
+      <DependentUpon>SoleStoreDBModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Views\Cart\WishList.cshtml" />
+    <Content Include="Views\LoginSignup\UserProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

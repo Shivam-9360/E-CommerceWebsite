@@ -86,10 +86,10 @@
 
                 <div class="add-cart-price">
                     <div class="add-cart-button">
-                        <button onclick="addToCartClicked()" id="cartAddButton"><i class="fa fa-shopping-bag"></i> Add to Cart</button>
+                        <button onclick="addToCartClicked(@Model.ID)" id="cartAddButton"><i class="fa fa-shopping-bag"></i> Add to Cart</button>
                     </div>
                     <div class="add-cart-button">
-                        <button onclick="addToWishlistClicked()" id="wishlistAddButton"><i class="fa fa-heart"></i> Wishlist</button>
+                        <button onclick="addToWishlistClicked(@Model.ID)" id="wishlistAddButton"><i class="fa fa-heart"></i> Wishlist</button>
                     </div>
                 </div>
 
@@ -127,7 +127,7 @@
                             <option value="3">Poor</option>
                         </select>
                         <textarea id="messageReview" cols="30" rows="10" placeholder="Your Message"></textarea>
-                        <button value="submit" onclick="submitReview()">SUBMIT</button>
+                        <button value="submit" onclick="submitReview(@Model.ID)">SUBMIT</button>
                     </div>
                 </div>
             }
@@ -195,5 +195,9 @@
 
 @section scriptFile
 {
+    <script>
+        var isAlreadyInCart = "@Model.IsInCart" == "True";
+        var isAlreadyInWishList = "@Model.IsInWishList" == "True";
+    </script>
     @Scripts.Render("~/Product/js")
 }

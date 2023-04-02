@@ -30,6 +30,12 @@ namespace ECommerceWebsite
             bundles.Add(new ScriptBundle("~/AboutUs/js").Include(
                         "~/Scripts/aboutus*"));
 
+            bundles.Add(new ScriptBundle("~/WishList/js").Include(
+                        "~/Scripts/wishlist*"));
+
+            bundles.Add(new ScriptBundle("~/UserProfile/js").Include(
+                        "~/Scripts/profile*"));
+
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -55,6 +61,12 @@ namespace ECommerceWebsite
 
             bundles.Add(new StyleBundle("~/Cart/css").Include(
                       "~/Content/cart.css"));
+
+            bundles.Add(new StyleBundle("~/WishList/css").Include(
+                      "~/Content/wishlist.css"));
+
+            bundles.Add(new StyleBundle("~/UserProfile/css").Include(
+                      "~/Content/profile.css"));
 
             bundles.Add(new StyleBundle("~/Product/css").Include(
                       "~/Content/product.css",

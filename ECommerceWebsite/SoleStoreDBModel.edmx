@@ -4,7 +4,19 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SoleStoreDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SoleStoreDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="Cart_ID" />
+          </Key>
+          <Property Name="Cart_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_ID" Type="int" Nullable="false" />
+          <Property Name="Customer_ID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="IsWished" Type="bit" />
+          <Property Name="IsOrdered" Type="bit" />
+          <Property Name="IsInCart" Type="bit" />
+        </EntityType>
         <EntityType Name="Customers">
           <Key>
             <PropertyRef Name="Customer_ID" />
@@ -15,6 +27,7 @@
           <Property Name="PhoneNumber" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="HashPassword" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="HashSalt" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Address" Type="ntext" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -41,7 +54,31 @@
           <Property Name="Description" Type="ntext" />
           <Property Name="Liking" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Reviews__Custome__3F466844">
+        <Association Name="FK__Cart__Customer_I__2A4B4B5E">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cart__Product_ID__2B3F6F97">
+          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reviews__Custome__2C3393D0">
           <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
           <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
           <ReferentialConstraint>
@@ -53,7 +90,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reviews__Product__3E52440B">
+        <Association Name="FK__Reviews__Product__2D27B809">
           <End Role="Products" Type="Self.Products" Multiplicity="1" />
           <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
           <ReferentialConstraint>
@@ -65,15 +102,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SoleStoreDatabaseModelStoreContainer">
+        <EntityContainer Name="SoleStoreDBModelStoreContainer">
+          <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Reviews__Custome__3F466844" Association="Self.FK__Reviews__Custome__3F466844">
+          <AssociationSet Name="FK__Cart__Customer_I__2A4B4B5E" Association="Self.FK__Cart__Customer_I__2A4B4B5E">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cart__Product_ID__2B3F6F97" Association="Self.FK__Cart__Product_ID__2B3F6F97">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Cart" EntitySet="Cart" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reviews__Custome__2C3393D0" Association="Self.FK__Reviews__Custome__2C3393D0">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="Reviews" EntitySet="Reviews" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reviews__Product__3E52440B" Association="Self.FK__Reviews__Product__3E52440B">
+          <AssociationSet Name="FK__Reviews__Product__2D27B809" Association="Self.FK__Reviews__Product__2D27B809">
             <End Role="Products" EntitySet="Products" />
             <End Role="Reviews" EntitySet="Reviews" />
           </AssociationSet>
@@ -82,7 +128,21 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SoleStoreDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="SoleStoreDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="Cart_ID" />
+          </Key>
+          <Property Name="Cart_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_ID" Type="Int32" Nullable="false" />
+          <Property Name="Customer_ID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="IsWished" Type="Boolean" />
+          <Property Name="IsOrdered" Type="Boolean" />
+          <Property Name="IsInCart" Type="Boolean" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Cart__Customer_I__2A4B4B5E" FromRole="Cart" ToRole="Customers" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Cart__Product_ID__2B3F6F97" FromRole="Cart" ToRole="Products" />
+        </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="Customer_ID" />
@@ -93,7 +153,9 @@
           <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="HashPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="HashSalt" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Reviews" Relationship="Self.FK__Reviews__Custome__3F466844" FromRole="Customers" ToRole="Reviews" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Carts" Relationship="Self.FK__Cart__Customer_I__2A4B4B5E" FromRole="Customers" ToRole="Cart" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK__Reviews__Custome__2C3393D0" FromRole="Customers" ToRole="Reviews" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -109,7 +171,8 @@
           <Property Name="Stock" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Int32" />
           <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Reviews" Relationship="Self.FK__Reviews__Product__3E52440B" FromRole="Products" ToRole="Reviews" />
+          <NavigationProperty Name="Carts" Relationship="Self.FK__Cart__Product_ID__2B3F6F97" FromRole="Products" ToRole="Cart" />
+          <NavigationProperty Name="Reviews" Relationship="Self.FK__Reviews__Product__2D27B809" FromRole="Products" ToRole="Reviews" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -120,10 +183,34 @@
           <Property Name="Customer_ID" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Liking" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK__Reviews__Custome__3F466844" FromRole="Reviews" ToRole="Customers" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__Reviews__Product__3E52440B" FromRole="Reviews" ToRole="Products" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Reviews__Custome__2C3393D0" FromRole="Reviews" ToRole="Customers" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__Reviews__Product__2D27B809" FromRole="Reviews" ToRole="Products" />
         </EntityType>
-        <Association Name="FK__Reviews__Custome__3F466844">
+        <Association Name="FK__Cart__Customer_I__2A4B4B5E">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cart__Product_ID__2B3F6F97">
+          <End Role="Products" Type="Self.Product" Multiplicity="1" />
+          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Reviews__Custome__2C3393D0">
           <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
           <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
           <ReferentialConstraint>
@@ -135,7 +222,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Reviews__Product__3E52440B">
+        <Association Name="FK__Reviews__Product__2D27B809">
           <End Role="Products" Type="Self.Product" Multiplicity="1" />
           <End Role="Reviews" Type="Self.Review" Multiplicity="*" />
           <ReferentialConstraint>
@@ -148,14 +235,23 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SoleStoreDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Carts" EntityType="Self.Cart" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Reviews" EntityType="Self.Review" />
-          <AssociationSet Name="FK__Reviews__Custome__3F466844" Association="Self.FK__Reviews__Custome__3F466844">
+          <AssociationSet Name="FK__Cart__Customer_I__2A4B4B5E" Association="Self.FK__Cart__Customer_I__2A4B4B5E">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cart__Product_ID__2B3F6F97" Association="Self.FK__Cart__Product_ID__2B3F6F97">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Reviews__Custome__2C3393D0" Association="Self.FK__Reviews__Custome__2C3393D0">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="Reviews" EntitySet="Reviews" />
           </AssociationSet>
-          <AssociationSet Name="FK__Reviews__Product__3E52440B" Association="Self.FK__Reviews__Product__3E52440B">
+          <AssociationSet Name="FK__Reviews__Product__2D27B809" Association="Self.FK__Reviews__Product__2D27B809">
             <End Role="Products" EntitySet="Products" />
             <End Role="Reviews" EntitySet="Reviews" />
           </AssociationSet>
@@ -165,9 +261,22 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SoleStoreDatabaseModelStoreContainer" CdmEntityContainer="SoleStoreDBEntities">
+        <EntityContainerMapping StorageEntityContainer="SoleStoreDBModelStoreContainer" CdmEntityContainer="SoleStoreDBEntities">
+          <EntitySetMapping Name="Carts">
+            <EntityTypeMapping TypeName="SoleStoreDBModel.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="Cart_ID" ColumnName="Cart_ID" />
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IsWished" ColumnName="IsWished" />
+                <ScalarProperty Name="IsOrdered" ColumnName="IsOrdered" />
+                <ScalarProperty Name="IsInCart" ColumnName="IsInCart" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Customers">
-            <EntityTypeMapping TypeName="SoleStoreDatabaseModel.Customer">
+            <EntityTypeMapping TypeName="SoleStoreDBModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
                 <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
@@ -175,11 +284,12 @@
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="HashPassword" ColumnName="HashPassword" />
                 <ScalarProperty Name="HashSalt" ColumnName="HashSalt" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="SoleStoreDatabaseModel.Product">
+            <EntityTypeMapping TypeName="SoleStoreDBModel.Product">
               <MappingFragment StoreEntitySet="Products">
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
                 <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
@@ -195,7 +305,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Reviews">
-            <EntityTypeMapping TypeName="SoleStoreDatabaseModel.Review">
+            <EntityTypeMapping TypeName="SoleStoreDBModel.Review">
               <MappingFragment StoreEntitySet="Reviews">
                 <ScalarProperty Name="Review_ID" ColumnName="Review_ID" />
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />

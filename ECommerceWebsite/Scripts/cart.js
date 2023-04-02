@@ -1,5 +1,4 @@
-﻿
-var c = document.getElementById("cartProducts");
+﻿var c = document.getElementById("cartProducts");
 
 function calcQuantity() {
     var counter = 0;
@@ -19,8 +18,10 @@ function calcQuantity() {
     }
     else {
         el.innerHTML = "Items " + counter;
+        el2.innerHTML = "ITEMS " + counter;
     }
 }
+
 function calcPriceFinal() {
     var p = 0;
     var total_counter = 0;
@@ -46,10 +47,10 @@ function calcPriceFinal() {
     var finalSumPrice = document.getElementById("finalSummaryPrice");
     finalSumPrice.innerHTML = p;
 
-
     var tenPercentDiscounts = ["discount10", "offer10", "solestore10"];
     var twentyPercentDiscounts = ["ams20", "AMS20", "solestore20"];
-    var fiftyPercentDiscounts = ["ams50", "AMS50"]
+    var fiftyPercentDiscounts = ["ams50", "AMS50"];
+
     var checkcodeInput = document.getElementById("code").value;
     var outputCode = document.getElementById("applyCodeResult");
     var loopLength = Math.max(tenPercentDiscounts.length, twentyPercentDiscounts.length, fiftyPercentDiscounts.length);
@@ -73,9 +74,7 @@ function calcPriceFinal() {
             setTimeout(function () { outputCode.style.display = ""; }, 3000);
             break;
         }
-
     }
-
 
     p = p - discount;
     var shipping = document.getElementById("shippingCharges").value;
@@ -89,10 +88,49 @@ function calcPriceFinal() {
     }
 
 }
-function deleteItemFromCart(id) {
-    id.parentElement.classList.add("deleted");
-    calcQuantity();
-    calcPriceFinal();
+
+function deleteItemFromCart(element, productID) {
+    $.ajax({
+        type: "POST",
+        url: "/Cart/RemoveFromCart",
+        data: {
+            productID: productID,
+            isWished: 0,
+        },
+        success: function (objectResponse) {
+            if (objectResponse.Title == "Success") {
+                element.parentElement.classList.add("deleted");
+                calcQuantity();
+                calcPriceFinal();
+            }
+            else {
+                alert(Object.Message)
+            }
+        },
+        error: function (err) {
+            console.log("Item was not removed from cart due to some error. Please try again later.");
+        }
+    });
+}
+
+function changeQuantity(inputElement, ID)
+{
+    $.ajax({
+        type: "POST",
+        url: "/Cart/UpdateQuantity",
+        data: {
+            productID: ID,
+            quantity: inputElement.value,
+        },
+        success: function (objectResponse) {
+            if (objectResponse.Title != "Success") {
+                alert(Object.Message)
+            }
+        },
+        error: function (err) {
+            console.log("Product quantity was not updated from cart. Please try again later.");
+        }
+    });
 }
 
 calcQuantity();
