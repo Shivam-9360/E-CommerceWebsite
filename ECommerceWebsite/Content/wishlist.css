@@ -130,11 +130,16 @@ img {
 }
 
 .btn:hover {
-        border: 2px solid black;
-        color: black;
+    border: 2px solid black;
+    color: black;
 }
 
-a{
+.add-to-cart-clicked {
+    border: 2px solid black;
+    color: black;
+}
+
+a {
     color: black;
 }
 

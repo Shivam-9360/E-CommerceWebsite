@@ -20,39 +20,31 @@
                 </div>
 
                 <div id="wishlistProducts" class="text-center">
-
-                    <div class="row main align-items-center wishlist-item">
-                        <div class="col "><img class="img-fluid wishlist-prod-image" src="../Products/Casual Wear/Product 1/img1.png"></div>
-                        <div class="col p-2">
-                            <div class="row text-muted" style="justify-content: center;">Casual</div>
-                            <div class="row" style="justify-content: center;">Nike Lebron 5</div>
+                    @for (int i = 0; i < Model.ProductList.Count; i++)
+                    {
+                        <div class="row main align-items-center wishlist-item">
+                            <div class="col "><img class="img-fluid wishlist-prod-image" src="@Model.ProductList[i].ImagePath_1"></div>
+                            <div class="col p-2">
+                                <div class="row text-muted" style="justify-content: center;">@Model.ProductList[i].Category</div>
+                                <div class="row" style="justify-content: center;">@Model.ProductList[i].Name</div>
+                            </div>
+                            <div class="col">
+                                <span>$</span><span>@Model.ProductList[i].Price</span>
+                            </div>
+                            <div class="col">
+                                @if (Model.ProductList[i].IsInCart == true)
+                                {
+                                    <button class="btn add-to-cart-clicked" disabled>Added to Cart</button>
+                                }
+                                else
+                                {
+                                    <button class="btn" onclick="addToCart(this, @Model.ProductList[i].ID)">Add to Cart</button>
+                                }
+                            </div>
+                            <div class="col"><span class="fa fa-trash" onclick="deleteItemFromwishlist(this.parentElement, @Model.ProductList[i].ID)"></span></div>
+                            <hr>
                         </div>
-                        <div class="col">
-                            <span>$</span><span id="productFinal_1">120</span>
-                        </div>
-                        <div class="col">
-                            <button class="btn">Add to Cart</button>
-                        </div>
-                        <div class="col"><span class="fa fa-trash" onclick="deleteItemFromwishlist(this.parentElement)"></span></div>
-                        <hr>
-                    </div>
-
-                    <div class="row main align-items-center wishlist-item">
-                        <div class="col "><img class="img-fluid wishlist-prod-image" src="../Products/Casual Wear/Product 1/img1.png"></div>
-                        <div class="col p-2">
-                            <div class="row text-muted" style="justify-content: center;">Casual</div>
-                            <div class="row" style="justify-content: center;">Nike Lebron 5</div>
-                        </div>
-                        <div class="col">
-                            <span>$</span><span id="productFinal_1">120</span>
-                        </div>
-                        <div class="col">
-                            <button class="btn">Add to Cart</button>
-                        </div>
-                        <div class="col"><span class="fa fa-trash" onclick="deleteItemFromwishlist(this.parentElement)"></span></div>
-                        <hr>
-                    </div>
-
+                    }
                 </div>
 
             </div>

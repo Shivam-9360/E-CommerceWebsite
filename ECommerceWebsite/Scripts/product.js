@@ -100,7 +100,7 @@ function addToWishlistClicked(ID) {
         success: function (objectResponse) {
             alert(objectResponse.Message);
 
-            f(objectResponse.Title == "Success")
+            if(objectResponse.Title == "Success")
             {
                 decorateWishListButton()
             }
