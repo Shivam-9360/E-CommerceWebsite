@@ -5,7 +5,30 @@
     @Styles.Render("~/UserProfile/css")
 }
 
-
+<div class="userProfilePage-card m-5" id="userProfileCard">
+    <div id="userDetailsDisplaySection">
+        <img src="../images/defaultProfile.jpg" alt="">
+        <div style="display: flex;">
+            <h3 id="userpageHeader">Hello,<span id="UserNameExtract" class="headings-for-page"> Aaditya Mall</span></h3>
+        </div>
+    </div>
+    <div id="userWebsiteDataDets">
+        <hr>
+        <div id="allOrders">
+            <span class="headings-for-page">Your Orders <i class="fa fa-arrow-right"></i></span>
+        </div>
+        <hr>
+        <div id="wishlistButtonUserPage">
+            <span class="headings-for-page">Wishlist <i class="fa fa-heart"></i></span>
+        </div>
+        <hr>
+        <span class="headings-for-page">Your Cart <i class="fa fa-shopping-bag"></i></span>
+        <hr>
+    </div>
+    <div id="userSignout">
+        <button class="btn" id="signOutButton">Sign Out</button>
+    </div>
+</div>
 
 @section scriptFile
 {
