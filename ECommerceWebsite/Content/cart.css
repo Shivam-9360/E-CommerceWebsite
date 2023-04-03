@@ -41,13 +41,13 @@
     vertical-align: middle;
 }
 
-    .cart-quantity input {
-        font-weight: bolder;
-        width: 7vh;
-        height: 7vh;
-        background-color: white;
-        text-align: center;
-    }
+.cart-quantity input {
+    font-weight: bolder;
+    width: 7vh;
+    height: 7vh;
+    background-color: white;
+    text-align: center;
+}
 
 .cart-prod-image {
     width: 100px;
@@ -161,10 +161,10 @@ select {
     transition: .3s ease-in-out;
 }
 
-    .btn:hover {
-        border: 2px solid black;
-        color: black;
-    }
+.btn:hover {
+    border: 2px solid black;
+    color: black;
+}
 
 .fa-times-circle:hover {
     cursor: pointer;

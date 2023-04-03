@@ -4,15 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c150f70084174b2295994f9f6cde632c" Name="Diagram1">
-        <EntityTypeShape EntityType="SoleStoreDBModel.Cart" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+      <Diagram DiagramId="02deb65b7d5344c1b7bc366f005ef66e" Name="Diagram1">
         <EntityTypeShape EntityType="SoleStoreDBModel.Customer" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SoleStoreDBModel.Product" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SoleStoreDBModel.Review" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
-        <AssociationConnector Association="SoleStoreDBModel.FK__Cart__Customer_I__2A4B4B5E" ManuallyRouted="false" />
-        <AssociationConnector Association="SoleStoreDBModel.FK__Cart__Product_ID__2B3F6F97" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SoleStoreDBModel.Order" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoleStoreDBModel.Product" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SoleStoreDBModel.Review" Width="1.5" PointX="6" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="SoleStoreDBModel.FK__Orders__Customer__36B12243" ManuallyRouted="false" />
         <AssociationConnector Association="SoleStoreDBModel.FK__Reviews__Custome__2C3393D0" ManuallyRouted="false" />
         <AssociationConnector Association="SoleStoreDBModel.FK__Reviews__Product__2D27B809" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="SoleStoreDBModel.Cart" Width="1.5" PointX="6" PointY="1" />
+        <AssociationConnector Association="SoleStoreDBModel.FK__Cart__Customer_I__2A4B4B5E" />
+        <AssociationConnector Association="SoleStoreDBModel.FK__Cart__Product_ID__2B3F6F97" />
+        <AssociationConnector Association="SoleStoreDBModel.FK__Orders__Cart_ID__37A5467C" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

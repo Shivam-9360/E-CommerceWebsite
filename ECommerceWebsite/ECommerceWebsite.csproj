@@ -143,13 +143,18 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CartModelHelper.cs" />
+    <Compile Include="Helpers\OrderModelHelper.cs" />
     <Compile Include="Helpers\ProductModelHelper.cs" />
     <Compile Include="Helpers\ReviewModelHelpers.cs" />
     <Compile Include="Models\CartModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />
+    <Compile Include="Models\OrderModel.cs" />
     <Compile Include="Models\ProductListModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\ReviewModel.cs" />
+    <Compile Include="Order.cs">
+      <DependentUpon>SoleStoreDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Product.cs">
       <DependentUpon>SoleStoreDBModel.tt</DependentUpon>
     </Compile>
@@ -235,6 +240,8 @@
     <Content Include="Views\Home\Shop.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Shared\_ProductList.cshtml" />
+    <Content Include="Views\Cart\WishList.cshtml" />
+    <Content Include="Views\LoginSignup\UserProfile.cshtml" />
     <EntityDeploy Include="SoleStoreDBModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SoleStoreDBModel.Designer.cs</LastGenOutput>
@@ -242,8 +249,6 @@
     <Content Include="SoleStoreDBModel.edmx.diagram">
       <DependentUpon>SoleStoreDBModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Views\Cart\WishList.cshtml" />
-    <Content Include="Views\LoginSignup\UserProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

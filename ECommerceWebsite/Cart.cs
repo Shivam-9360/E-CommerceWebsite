@@ -14,15 +14,22 @@ namespace ECommerceWebsite
     
     public partial class Cart
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Cart()
+        {
+            this.Orders = new HashSet<Order>();
+        }
+    
         public int Cart_ID { get; set; }
         public int Product_ID { get; set; }
         public int Customer_ID { get; set; }
         public int Quantity { get; set; }
         public Nullable<bool> IsWished { get; set; }
-        public Nullable<bool> IsOrdered { get; set; }
         public Nullable<bool> IsInCart { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Product Product { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

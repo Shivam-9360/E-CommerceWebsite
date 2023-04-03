@@ -50,20 +50,20 @@
                     <div class="col" id="cartItemCountSummary" style="padding-left:0;">ITEMS 3</div>
                     <div class="col text-right">₹<span id="finalSummaryPrice"></span></div>
                 </div>
-                <form>
+                <form onsubmit="return submitOrder()">
                     <p>SHIPPING</p>
-                    <textarea name="addressField" id="addressField" cols="23" rows="2" placeholder="Address" required></textarea>
-                    <select id="shippingCharges" onchange="calcPriceFinal()"><option value="0">Standard-Delivery- ₹ 200 </option><option value="1">Fast Delivery -  ₹ 400</option></select>
+                    <textarea id="addressField" cols="23" rows="2" placeholder="Address" required></textarea>
+                    <select id="shippingCharges" onchange="calcPriceFinal()"><option value="200">Standard-Delivery- ₹ 200 </option><option value="400">Fast Delivery -  ₹ 400</option></select>
                     <p>GIVE CODE</p>
                     <input id="code" placeholder="Enter your code">
                     <span class="btn" onclick="calcPriceFinal()">APPLY CODE</span>
                     <center><span id="applyCodeResult"></span></center>
+                    <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                        <div class="col">TOTAL PRICE</div>
+                        <div class="col text-right">₹<span id="checkoutPrice"></span></div>
+                    </div>
+                    <button value="submit" class="btn">CHECKOUT</button>
                 </form>
-                <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                    <div class="col">TOTAL PRICE</div>
-                    <div class="col text-right">₹<span id="checkoutPrice"></span></div>
-                </div>
-                <button class="btn">CHECKOUT</button>
             </div>
         </div>
 

@@ -23,8 +23,7 @@ namespace ECommerceWebsite.Controllers
             {
                 cartModel = CartModelHelper.ToCartModelList(databaseEntity.Carts.Where(s =>
                 s.Customer_ID == AuthenticationUtility.CurrentCustomer.ID
-                && s.IsInCart == true
-                && s.IsOrdered == false).ToList());
+                && s.IsInCart == true).ToList());
             }
 
             return View(cartModel);
@@ -41,12 +40,32 @@ namespace ECommerceWebsite.Controllers
             using (var databaseEntity = new SoleStoreDBEntities())
             {
                 cartModel = CartModelHelper.ToCartModelList(databaseEntity.Carts.Where(s =>
-                s.Customer_ID == databaseEntity.Customers.Where(customer => customer.Email == AuthenticationUtility.CurrentCustomer.Email).FirstOrDefault<Customer>().Customer_ID
-                && s.IsWished == true
-                && s.IsOrdered == false).ToList());
+                s.Customer_ID == databaseEntity.Customers.Where(customer => customer.Email == AuthenticationUtility.CurrentCustomer.Email).FirstOrDefault<Customer>().Customer_ID && s.IsWished == true).ToList());
             }
 
             return View(cartModel);
+        }
+
+        public ActionResult Order(int orderNO)
+        {
+            if (!AuthenticationUtility.IsLoggedIn)
+            {
+                return Json(new JsonObjectUtility()
+                {
+                    Title = "Failed",
+                    Message = "User is not logged in"
+                });
+            }
+
+            var orderModel = OrderModelHelper.ToOrderModel(orderNO);
+
+            if(orderModel == null)
+            {
+                //Error
+                return View();
+            }
+
+            return View(orderModel);
         }
 
         [HttpPost]
@@ -83,7 +102,6 @@ namespace ECommerceWebsite.Controllers
                         Product_ID = productID,
                         Customer_ID = AuthenticationUtility.CurrentCustomer.ID,
                         Quantity = 1,
-                        IsOrdered = false,
                         IsWished = isWished == 1,
                         IsInCart = isWished != 1
                     };
@@ -124,9 +142,10 @@ namespace ECommerceWebsite.Controllers
                     else
                     {
                         existingProduct.IsInCart = false;
+                        existingProduct.Quantity = 0;
                     }
 
-                    if (existingProduct.IsInCart == false && existingProduct.IsWished == false && existingProduct.IsOrdered == false)
+                    if (existingProduct.IsInCart == false && existingProduct.IsWished == false)
                     {
                         databaseEntity.Carts.Remove(existingProduct);
                     }
@@ -181,6 +200,55 @@ namespace ECommerceWebsite.Controllers
                         Message = "Product not found"
                     });
                 }
+            }
+        }
+
+        [HttpPost]
+        public JsonResult SubmitOrder(string customerAddress, int basePrice, int shippingPrice, int discount)
+        {
+            if (!AuthenticationUtility.IsLoggedIn)
+            {
+                return Json(new JsonObjectUtility()
+                {
+                    Title = "Failed",
+                    Message = "User is not logged in"
+                });
+            }
+
+            using (var databaseEntity = new SoleStoreDBEntities())
+            {
+                databaseEntity.Customers.Where(s => s.Customer_ID == AuthenticationUtility.CurrentCustomer.ID).FirstOrDefault().Address = customerAddress;
+                AuthenticationUtility.CurrentCustomer.Address = customerAddress;
+
+                int orderNO = new Random().Next(1000, 9999);
+
+                var cartItems = databaseEntity.Carts.Where(
+                    s => s.Customer_ID == AuthenticationUtility.CurrentCustomer.ID 
+                    && s.IsInCart == true).ToList<Cart>();
+
+                foreach(var cartItem in cartItems)
+                {
+                    cartItem.IsInCart = false;
+
+                    databaseEntity.Orders.Add(new Order
+                    {
+                        Order_NO = orderNO,
+                        Customer_ID = AuthenticationUtility.CurrentCustomer.ID,
+                        Order_Date = DateTime.Now,
+                        Base_Price = basePrice,
+                        Shipping_price = shippingPrice,
+                        Discount = discount,
+                        Cart_ID = cartItem.Cart_ID
+                    });
+                }
+
+                databaseEntity.SaveChanges();
+
+                return Json(new JsonObjectUtility
+                {
+                    Title = "Success",
+                    Message = orderNO.ToString()
+                });
             }
         }
     }

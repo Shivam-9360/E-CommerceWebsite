@@ -1,4 +1,5 @@
 ﻿var c = document.getElementById("cartProducts");
+var discountValue = 0;
 
 function calcQuantity() {
     var counter = 0;
@@ -54,29 +55,28 @@ function calcPriceFinal() {
     var checkcodeInput = document.getElementById("code").value;
     var outputCode = document.getElementById("applyCodeResult");
     var loopLength = Math.max(tenPercentDiscounts.length, twentyPercentDiscounts.length, fiftyPercentDiscounts.length);
-    var discount = 0;
     for (let i = 0; i < loopLength; i++) {
         if (checkcodeInput == tenPercentDiscounts[i]) {
-            discount = (10 * p) / 100;
+            discountValue = (10 * p) / 100;
             outputCode.innerHTML = '10 % Discount Coupon Applied ( ' + tenPercentDiscounts[i] + ' )';
             setTimeout(function () { outputCode.style.display = "none"; }, 3000);
             break;
         }
         else if (checkcodeInput == twentyPercentDiscounts[i]) {
-            discount = (20 * p) / 100;
+            discountValue = (20 * p) / 100;
             outputCode.innerHTML = '20 % Discount Coupon Applied ( ' + twentyPercentDiscounts[i] + ' )';
             setTimeout(function () { outputCode.style.display = "none"; }, 3000);
             break;
         }
         else if (checkcodeInput == fiftyPercentDiscounts[i]) {
-            discount = (50 * p) / 100;
+            discountValue = (50 * p) / 100;
             outputCode.innerHTML = '50 % Discount Coupon Applied ( ' + fiftyPercentDiscounts[i] + ' )';
             setTimeout(function () { outputCode.style.display = ""; }, 3000);
             break;
         }
     }
 
-    p = p - discount;
+    p = p - discountValue;
     var shipping = document.getElementById("shippingCharges").value;
     var checkoutP = document.getElementById("checkoutPrice");
     if (shipping == 0) {
@@ -144,4 +144,30 @@ function darkMode() {
 function lightMode() {
     var mainCart = document.getElementById("mainCart");
     mainCart.classList.remove("bg-dark");
+}
+
+function submitOrder()
+{
+    $.ajax({
+        type: "POST",
+        url: "/Cart/SubmitOrder",
+        data: {
+            customerAddress: document.getElementById("addressField").value, 
+            basePrice: parseInt(document.getElementById("finalSummaryPrice").innerHTML),
+            shippingPrice: parseInt(document.getElementById("shippingCharges").value),
+            discount: discountValue
+        },
+        success: function (objectResponse) {
+            if (objectResponse.Title == "Success")
+            {
+                var searchQuery = `?orderNO=${objectResponse.Message}`;
+                window.location.href = window.location.origin + '/Cart/Order' + searchQuery;
+            }
+        },
+        error: function (err) {
+            console.log("Your order was not registered due to some error. Please try again later.");
+        }
+    });
+
+    return false;
 }

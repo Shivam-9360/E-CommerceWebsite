@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SoleStoreDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SoleStoreDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cart">
           <Key>
             <PropertyRef Name="Cart_ID" />
@@ -14,7 +14,6 @@
           <Property Name="Customer_ID" Type="int" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="IsWished" Type="bit" />
-          <Property Name="IsOrdered" Type="bit" />
           <Property Name="IsInCart" Type="bit" />
         </EntityType>
         <EntityType Name="Customers">
@@ -28,6 +27,19 @@
           <Property Name="HashPassword" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="HashSalt" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Address" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Order_ID" />
+          </Key>
+          <Property Name="Order_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Order_NO" Type="int" Nullable="false" />
+          <Property Name="Customer_ID" Type="int" Nullable="false" />
+          <Property Name="Cart_ID" Type="int" Nullable="false" />
+          <Property Name="Order_Date" Type="date" Nullable="false" />
+          <Property Name="Base_Price" Type="int" Nullable="false" />
+          <Property Name="Shipping_price" Type="int" Nullable="false" />
+          <Property Name="Discount" Type="int" />
         </EntityType>
         <EntityType Name="Products">
           <Key>
@@ -78,6 +90,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Orders__Cart_ID__37A5467C">
+          <End Role="Cart" Type="Self.Cart" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cart">
+              <PropertyRef Name="Cart_ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Cart_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Customer__36B12243">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Reviews__Custome__2C3393D0">
           <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
           <End Role="Reviews" Type="Self.Reviews" Multiplicity="*" />
@@ -105,6 +141,7 @@
         <EntityContainer Name="SoleStoreDBModelStoreContainer">
           <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Reviews" EntityType="Self.Reviews" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Cart__Customer_I__2A4B4B5E" Association="Self.FK__Cart__Customer_I__2A4B4B5E">
@@ -115,6 +152,14 @@
             <End Role="Products" EntitySet="Products" />
             <End Role="Cart" EntitySet="Cart" />
           </AssociationSet>
+          <AssociationSet Name="FK__Orders__Cart_ID__37A5467C" Association="Self.FK__Orders__Cart_ID__37A5467C">
+            <End Role="Cart" EntitySet="Cart" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Customer__36B12243" Association="Self.FK__Orders__Customer__36B12243">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
           <AssociationSet Name="FK__Reviews__Custome__2C3393D0" Association="Self.FK__Reviews__Custome__2C3393D0">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="Reviews" EntitySet="Reviews" />
@@ -124,25 +169,10 @@
             <End Role="Reviews" EntitySet="Reviews" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SoleStoreDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Cart">
-          <Key>
-            <PropertyRef Name="Cart_ID" />
-          </Key>
-          <Property Name="Cart_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Product_ID" Type="Int32" Nullable="false" />
-          <Property Name="Customer_ID" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="IsWished" Type="Boolean" />
-          <Property Name="IsOrdered" Type="Boolean" />
-          <Property Name="IsInCart" Type="Boolean" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK__Cart__Customer_I__2A4B4B5E" FromRole="Cart" ToRole="Customers" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__Cart__Product_ID__2B3F6F97" FromRole="Cart" ToRole="Products" />
-        </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="Customer_ID" />
@@ -154,8 +184,24 @@
           <Property Name="HashPassword" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="HashSalt" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Carts" Relationship="Self.FK__Cart__Customer_I__2A4B4B5E" FromRole="Customers" ToRole="Cart" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK__Orders__Customer__36B12243" FromRole="Customers" ToRole="Orders" />
           <NavigationProperty Name="Reviews" Relationship="Self.FK__Reviews__Custome__2C3393D0" FromRole="Customers" ToRole="Reviews" />
+          <NavigationProperty Name="Carts" Relationship="SoleStoreDBModel.FK__Cart__Customer_I__2A4B4B5E" FromRole="Customer" ToRole="Cart" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Order_ID" />
+          </Key>
+          <Property Name="Order_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Order_NO" Type="Int32" Nullable="false" />
+          <Property Name="Customer_ID" Type="Int32" Nullable="false" />
+          <Property Name="Cart_ID" Type="Int32" Nullable="false" />
+          <Property Name="Order_Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Base_Price" Type="Int32" Nullable="false" />
+          <Property Name="Shipping_price" Type="Int32" Nullable="false" />
+          <Property Name="Discount" Type="Int32" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Orders__Customer__36B12243" FromRole="Orders" ToRole="Customers" />
+          <NavigationProperty Name="Cart" Relationship="SoleStoreDBModel.FK__Orders__Cart_ID__37A5467C" FromRole="Order" ToRole="Cart" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -171,8 +217,8 @@
           <Property Name="Stock" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Int32" />
           <Property Name="Category" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Carts" Relationship="Self.FK__Cart__Product_ID__2B3F6F97" FromRole="Products" ToRole="Cart" />
           <NavigationProperty Name="Reviews" Relationship="Self.FK__Reviews__Product__2D27B809" FromRole="Products" ToRole="Reviews" />
+          <NavigationProperty Name="Carts" Relationship="SoleStoreDBModel.FK__Cart__Product_ID__2B3F6F97" FromRole="Product" ToRole="Cart" />
         </EntityType>
         <EntityType Name="Review">
           <Key>
@@ -186,27 +232,15 @@
           <NavigationProperty Name="Customer" Relationship="Self.FK__Reviews__Custome__2C3393D0" FromRole="Reviews" ToRole="Customers" />
           <NavigationProperty Name="Product" Relationship="Self.FK__Reviews__Product__2D27B809" FromRole="Reviews" ToRole="Products" />
         </EntityType>
-        <Association Name="FK__Cart__Customer_I__2A4B4B5E">
+        <Association Name="FK__Orders__Customer__36B12243">
           <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
-          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Customers">
               <PropertyRef Name="Customer_ID" />
             </Principal>
-            <Dependent Role="Cart">
+            <Dependent Role="Orders">
               <PropertyRef Name="Customer_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Cart__Product_ID__2B3F6F97">
-          <End Role="Products" Type="Self.Product" Multiplicity="1" />
-          <End Role="Cart" Type="Self.Cart" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Products">
-              <PropertyRef Name="Product_ID" />
-            </Principal>
-            <Dependent Role="Cart">
-              <PropertyRef Name="Product_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -235,17 +269,13 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SoleStoreDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Carts" EntityType="Self.Cart" />
           <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="Reviews" EntityType="Self.Review" />
-          <AssociationSet Name="FK__Cart__Customer_I__2A4B4B5E" Association="Self.FK__Cart__Customer_I__2A4B4B5E">
+          <AssociationSet Name="FK__Orders__Customer__36B12243" Association="Self.FK__Orders__Customer__36B12243">
             <End Role="Customers" EntitySet="Customers" />
-            <End Role="Cart" EntitySet="Carts" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Cart__Product_ID__2B3F6F97" Association="Self.FK__Cart__Product_ID__2B3F6F97">
-            <End Role="Products" EntitySet="Products" />
-            <End Role="Cart" EntitySet="Carts" />
+            <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK__Reviews__Custome__2C3393D0" Association="Self.FK__Reviews__Custome__2C3393D0">
             <End Role="Customers" EntitySet="Customers" />
@@ -255,26 +285,76 @@
             <End Role="Products" EntitySet="Products" />
             <End Role="Reviews" EntitySet="Reviews" />
           </AssociationSet>
+          <EntitySet Name="Carts" EntityType="SoleStoreDBModel.Cart" />
+          <AssociationSet Name="FK__Cart__Customer_I__2A4B4B5E" Association="SoleStoreDBModel.FK__Cart__Customer_I__2A4B4B5E">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cart__Product_ID__2B3F6F97" Association="SoleStoreDBModel.FK__Cart__Product_ID__2B3F6F97">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Cart" EntitySet="Carts" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Cart_ID__37A5467C" Association="SoleStoreDBModel.FK__Orders__Cart_ID__37A5467C">
+            <End Role="Cart" EntitySet="Carts" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="Cart_ID" />
+          </Key>
+          <Property Name="Cart_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_ID" Type="Int32" Nullable="false" />
+          <Property Name="Customer_ID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="IsWished" Type="Boolean" />
+          <Property Name="IsInCart" Type="Boolean" />
+          <NavigationProperty Name="Customer" Relationship="SoleStoreDBModel.FK__Cart__Customer_I__2A4B4B5E" FromRole="Cart" ToRole="Customer" />
+          <NavigationProperty Name="Product" Relationship="SoleStoreDBModel.FK__Cart__Product_ID__2B3F6F97" FromRole="Cart" ToRole="Product" />
+          <NavigationProperty Name="Orders" Relationship="SoleStoreDBModel.FK__Orders__Cart_ID__37A5467C" FromRole="Cart" ToRole="Order" />
+        </EntityType>
+        <Association Name="FK__Cart__Customer_I__2A4B4B5E">
+          <End Type="SoleStoreDBModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="SoleStoreDBModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cart__Product_ID__2B3F6F97">
+          <End Type="SoleStoreDBModel.Product" Role="Product" Multiplicity="1" />
+          <End Type="SoleStoreDBModel.Cart" Role="Cart" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="Cart">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Cart_ID__37A5467C">
+          <End Type="SoleStoreDBModel.Cart" Role="Cart" Multiplicity="1" />
+          <End Type="SoleStoreDBModel.Order" Role="Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cart">
+              <PropertyRef Name="Cart_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Cart_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SoleStoreDBModelStoreContainer" CdmEntityContainer="SoleStoreDBEntities">
-          <EntitySetMapping Name="Carts">
-            <EntityTypeMapping TypeName="SoleStoreDBModel.Cart">
-              <MappingFragment StoreEntitySet="Cart">
-                <ScalarProperty Name="Cart_ID" ColumnName="Cart_ID" />
-                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
-                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="IsWished" ColumnName="IsWished" />
-                <ScalarProperty Name="IsOrdered" ColumnName="IsOrdered" />
-                <ScalarProperty Name="IsInCart" ColumnName="IsInCart" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="SoleStoreDBModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
@@ -285,6 +365,20 @@
                 <ScalarProperty Name="HashPassword" ColumnName="HashPassword" />
                 <ScalarProperty Name="HashSalt" ColumnName="HashSalt" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="SoleStoreDBModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="Order_NO" ColumnName="Order_NO" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="Cart_ID" ColumnName="Cart_ID" />
+                <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+                <ScalarProperty Name="Base_Price" ColumnName="Base_Price" />
+                <ScalarProperty Name="Shipping_price" ColumnName="Shipping_price" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -312,6 +406,18 @@
                 <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Liking" ColumnName="Liking" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carts">
+            <EntityTypeMapping TypeName="SoleStoreDBModel.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="IsInCart" ColumnName="IsInCart" />
+                <ScalarProperty Name="IsWished" ColumnName="IsWished" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="Cart_ID" ColumnName="Cart_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

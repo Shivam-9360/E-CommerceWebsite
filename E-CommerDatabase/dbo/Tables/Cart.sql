@@ -4,12 +4,13 @@
     [Customer_ID] INT NOT NULL,
     [Quantity]    INT NOT NULL,
     [IsWished]    BIT NULL,
-    [IsOrdered]   BIT NULL,
     [IsInCart]    BIT NULL,
     PRIMARY KEY CLUSTERED ([Cart_ID] ASC),
     FOREIGN KEY ([Customer_ID]) REFERENCES [dbo].[Customers] ([Customer_ID]),
     FOREIGN KEY ([Product_ID]) REFERENCES [dbo].[Products] ([Product_ID])
 );
+
+
 
 
 

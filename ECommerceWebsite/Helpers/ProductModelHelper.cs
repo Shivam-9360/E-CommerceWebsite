@@ -36,7 +36,6 @@ namespace ECommerceWebsite.Helpers
                                         && s.Product_ID == product.Product_ID).FirstOrDefault();
                     if (cartItem != null)
                     {
-                        productModel.IsOrdered = cartItem.IsOrdered;
                         productModel.IsInCart = cartItem.IsInCart;
                         productModel.IsInWishList = cartItem.IsWished;
                     }
