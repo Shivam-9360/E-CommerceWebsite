@@ -1,1 +1,156 @@
-﻿
+﻿#contentHolder {
+    background-image: url(../images/loginpg_bg.png);
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.title {
+    margin-bottom: 5vh;
+}
+
+.card {
+    margin: auto;
+    max-width: 950px;
+    width: 95%;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 1rem;
+    border: transparent;
+}
+
+@media(max-width:767px) {
+    .card {
+        margin: 3vh auto;
+    }
+}
+
+.wishlist {
+    background-color: #fff;
+    padding: 4vh 5vh;
+    border-radius: 1rem;
+}
+
+#wishlistItemCount {
+    margin-right: 20px;
+    font-weight: 600;
+}
+
+.wishlist-head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.wishlist-quantity {
+    text-align: center;
+    margin-top: 20px;
+    vertical-align: middle;
+}
+
+.wishlist-quantity input {
+    font-weight: bolder;
+    width: 7vh;
+    height: 7vh;
+    background-color: transparent;
+    text-align: center;
+}
+
+.wishlist-prod-image {
+    width: 100px;
+}
+
+.text-muted {
+    font-size: 10px;
+}
+
+.wishlist-item-count {
+    color: gray;
+    font-size: larger;
+}
+
+@media(max-width:767px) {
+    .wishlist {
+        padding: 4vh;
+        border-bottom-left-radius: unset;
+        border-top-right-radius: 1rem;
+    }
+}
+
+.summary {
+    background-color: #ddd;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    padding: 4vh;
+    color: rgb(65, 65, 65);
+}
+
+@media(max-width:767px) {
+    .summary {
+        border-top-right-radius: unset;
+        border-bottom-left-radius: 1rem;
+    }
+}
+
+.title b {
+    font-size: 1.5rem;
+}
+
+.main {
+    margin: 0;
+    padding: 2vh 0;
+    width: 100%;
+}
+
+.col-2, .col {
+    padding: 0 1vh;
+}
+
+a {
+    padding: 0 1vh;
+}
+
+.close {
+    margin-left: auto;
+    font-size: 0.7rem;
+}
+
+img {
+    width: 3.5rem;
+}
+
+
+.btn {
+    background-color: #000;
+    border: 2px solid #000;
+    color: white;
+    width: 100%;
+    font-size: 0.7rem;
+    padding: 1vh;
+    border-radius: 0;
+    transition: .3s ease-in-out;
+}
+
+.btn:hover {
+        border: 2px solid black;
+        color: black;
+}
+
+a{
+    color: black;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.fa-trash:hover {
+    cursor: pointer;
+}
+
+.deleted {
+    display: none;
+}
+
+.wishlist-item hr {
+    margin-top: 2vh;
+}

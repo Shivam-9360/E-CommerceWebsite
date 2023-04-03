@@ -5,7 +5,62 @@
     @Styles.Render("~/WishList/css")
 }
 
+<div style="display: flex; justify-content:center;">
+    <div class="card m-4 ">
+        <div class="row">
+            <div class="col-md-12 wishlist">
 
+                <div class="title">
+                    <div class="row">
+                        <div class="col wishlist-head">
+                            <h4 class="headings-for-page"><b>MY WISHLIST</b></h4>
+                            <span id="wishlistItemCount">Items </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="wishlistProducts" class="text-center">
+
+                    <div class="row main align-items-center wishlist-item">
+                        <div class="col "><img class="img-fluid wishlist-prod-image" src="../Products/Casual Wear/Product 1/img1.png"></div>
+                        <div class="col p-2">
+                            <div class="row text-muted" style="justify-content: center;">Casual</div>
+                            <div class="row" style="justify-content: center;">Nike Lebron 5</div>
+                        </div>
+                        <div class="col">
+                            <span>$</span><span id="productFinal_1">120</span>
+                        </div>
+                        <div class="col">
+                            <button class="btn">Add to Cart</button>
+                        </div>
+                        <div class="col"><span class="fa fa-trash" onclick="deleteItemFromwishlist(this.parentElement)"></span></div>
+                        <hr>
+                    </div>
+
+                    <div class="row main align-items-center wishlist-item">
+                        <div class="col "><img class="img-fluid wishlist-prod-image" src="../Products/Casual Wear/Product 1/img1.png"></div>
+                        <div class="col p-2">
+                            <div class="row text-muted" style="justify-content: center;">Casual</div>
+                            <div class="row" style="justify-content: center;">Nike Lebron 5</div>
+                        </div>
+                        <div class="col">
+                            <span>$</span><span id="productFinal_1">120</span>
+                        </div>
+                        <div class="col">
+                            <button class="btn">Add to Cart</button>
+                        </div>
+                        <div class="col"><span class="fa fa-trash" onclick="deleteItemFromwishlist(this.parentElement)"></span></div>
+                        <hr>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
 
 @section scriptFile
 {
