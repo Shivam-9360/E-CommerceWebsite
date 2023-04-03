@@ -25,11 +25,11 @@
                             <div class="col-3 "><img class="img-fluid cart-prod-image" src="@Model.ProductList[i].ImagePath_1"></div>
                             <div class="col p-2">
                                 <div class="row text-muted">@Model.ProductList[i].Category</div>
-                                <div class="row">@Model.ProductList[i].Product_Name</div>
+                                <div class="row">@Model.ProductList[i].Name</div>
                             </div>
 
                             <div class="col cart-quantity">
-                                <input type="number" name="@string.Format("cartQuantityProduct_{0}", (i+1))" onchange="changeQuantity(this, @Model.ProductList[i].Product_ID)" id="@string.Format("cartQuantityProduct_{0}", (i+1))" value="@Model.Quantity[i]" min="1" max="9">
+                                <input type="number" name="@string.Format("cartQuantityProduct_{0}", (i+1))" onchange="changeQuantity(this, @Model.ProductList[i].ID)" id="@string.Format("cartQuantityProduct_{0}", (i+1))" value="@Model.Quantity[i]" min="1" max="9">
                             </div>
 
                             <div class="col">
@@ -37,7 +37,7 @@
                                 <span>₹</span><span id="@string.Format("productFinal_{0}", (i+1))">@(Model.ProductList[i].Price * Model.Quantity[i])</span>
                             </div>
 
-                            <div class="col"><span class="fa fa-times-circle" onclick="deleteItemFromCart(this.parentElement, @Model.ProductList[i].Product_ID)"></span></div>
+                            <div class="col"><span class="fa fa-times-circle" onclick="deleteItemFromCart(this.parentElement, @Model.ProductList[i].ID)"></span></div>
                             <hr>
                         </div>
                     }

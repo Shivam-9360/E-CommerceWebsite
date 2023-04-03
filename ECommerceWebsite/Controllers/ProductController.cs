@@ -17,31 +17,9 @@ namespace ECommerceWebsite.Controllers
             {
                 var product = databaseEntity.Products.Where(s => s.Product_ID == productID).FirstOrDefault<Product>();
                 
-                ProductListModel similiarProducts = new ProductListModel();
-                similiarProducts.ProductList.AddRange(databaseEntity.Products.Where(s => s.Product_ID != productID && s.Category == product.Category).Take(3).ToList<Product>());
-
                 if (product != null)
                 {
-                    var cartItem = databaseEntity.Carts.Where(s =>
-                                        s.Customer_ID == AuthenticationUtility.CurrentCustomer.ID
-                                        && s.Product_ID == product.Product_ID).FirstOrDefault();
-                    var productModel = new ProductModel()
-                    {
-                        ID = product.Product_ID,
-                        Name = product.Product_Name,
-                        Description = product.Description,
-                        ImagePath_1 = product.ImagePath_1,
-                        ImagePath_2 = product.ImagePath_2,
-                        ImagePath_3 = product.ImagePath_3,
-                        ImagePath_4 = product.ImagePath_4,
-                        Price = product.Price,
-                        Stock = product.Stock,
-                        Category = product.Category,
-                        Reviews = ReviewModelHelpers.ToReviewModelList(databaseEntity.Reviews.Where(s => s.Product_ID == product.Product_ID).ToList()),
-                        SimiliarProducts = similiarProducts,
-                        IsInCart = cartItem != null ? cartItem.IsOrdered == false ? cartItem.IsInCart : false : false,
-                        IsInWishList = cartItem != null ? cartItem.IsWished : false,
-                    };
+                    var productModel = ProductModelHelper.ToProductModel(product, true, true);
                     return View(productModel);
                 }
                 else

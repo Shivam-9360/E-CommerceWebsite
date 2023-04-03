@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ECommerceWebsite.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,7 +20,8 @@ namespace ECommerceWebsite.Models
         public int? Price { get; set; }
         public bool? IsInCart { get; set; }
         public bool? IsInWishList { get; set; }
+        public bool? IsOrdered { get; set; }
         public List<ReviewModel> Reviews { get; set; } = new List<ReviewModel>();
-        public ProductListModel SimiliarProducts { get; set; } 
+        public ProductListModel SimiliarProducts { get; set; }  = new ProductListModel();
     }
 }

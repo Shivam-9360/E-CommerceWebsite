@@ -142,6 +142,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CartModelHelper.cs" />
+    <Compile Include="Helpers\ProductModelHelper.cs" />
     <Compile Include="Helpers\ReviewModelHelpers.cs" />
     <Compile Include="Models\CartModel.cs" />
     <Compile Include="Models\CustomerModel.cs" />

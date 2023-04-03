@@ -1,4 +1,5 @@
-﻿using ECommerceWebsite.Models;
+﻿using ECommerceWebsite.Helpers;
+using ECommerceWebsite.Models;
 using ECommerceWebsite.Utilities;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace ECommerceWebsite.Controllers
             CartModel cartModel;
             using (var databaseEntity = new SoleStoreDBEntities())
             {
-                cartModel = new CartModel(databaseEntity.Carts.Where(s =>
+                cartModel = CartModelHelper.ToCartModelList(databaseEntity.Carts.Where(s =>
                 s.Customer_ID == AuthenticationUtility.CurrentCustomer.ID
                 && s.IsInCart == true
                 && s.IsOrdered == false).ToList());
@@ -39,7 +40,7 @@ namespace ECommerceWebsite.Controllers
             CartModel cartModel;
             using (var databaseEntity = new SoleStoreDBEntities())
             {
-                cartModel = new CartModel(databaseEntity.Carts.Where(s =>
+                cartModel = CartModelHelper.ToCartModelList(databaseEntity.Carts.Where(s =>
                 s.Customer_ID == databaseEntity.Customers.Where(customer => customer.Email == AuthenticationUtility.CurrentCustomer.Email).FirstOrDefault<Customer>().Customer_ID
                 && s.IsWished == true
                 && s.IsOrdered == false).ToList());

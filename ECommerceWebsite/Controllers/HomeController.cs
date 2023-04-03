@@ -1,4 +1,5 @@
-﻿using ECommerceWebsite.Models;
+﻿using ECommerceWebsite.Helpers;
+using ECommerceWebsite.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace ECommerceWebsite.Controllers
             {
                 CategorySort = 0,
                 PriceSort = 0,
-                ProductList = productList,
+                ProductList = ProductModelHelper.ToProductListModel(productList),
             };
 
             return View(productListModel);
@@ -89,7 +90,7 @@ namespace ECommerceWebsite.Controllers
             {
                 CategorySort = categorySort,
                 PriceSort = priceSort,
-                ProductList = productList,
+                ProductList =  ProductModelHelper.ToProductListModel(productList),
             };
 
             return View(productListModel);

@@ -7,7 +7,7 @@ namespace ECommerceWebsite.Models
 {
     public class ProductListModel
     {
-        public List<Product> ProductList { get; set; } = new List<Product>();
+        public List<ProductModel> ProductList { get; set; } = new List<ProductModel>();
         public int CategorySort { get; set; }
         public int PriceSort { get; set; }
     }
