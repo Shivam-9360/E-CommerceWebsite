@@ -12,6 +12,7 @@
 //Layout Dark Mode Function
 var darkTheme = false;
 function layoutDark() {
+    var newsletterBg = document.getElementById("newsLetterID");
     var footerLogo = document.getElementById("footerLogoImage");
     var footerBranding = document.getElementById("footerHeaderDarkMode");
     var footer = document.getElementById("footerClass");
@@ -26,12 +27,14 @@ function layoutDark() {
         for (let i = 0; i < navBrand.length; i++) {
             navBrand[i].style.color = "white";
         }
+        newsletterBg.classList.add("darkNewsLetter");
+        newsletterBg.classList.remove("newsLetter");
         navBar.classList.add("navbar-dark");
         navBar.classList.add("bg-dark");
         navBar.classList.add("text-white");
         document.body.classList.add("bg-dark");
         footerBranding.classList.add("text-white");
-        footerLogo.src = "../images/darkmode_logo.png";
+        footerLogo.src = "../Images/darkmode_logo.png";
         footerLogo.width = "100%";
         footer.classList.remove("bg-light");
         footer.classList.remove("text-muted");
@@ -44,8 +47,8 @@ function layoutDark() {
             darkMode();
         });
 
-        
-        
+
+
         darkTheme = true;
     }
     else if (darkTheme) {
@@ -58,9 +61,11 @@ function layoutDark() {
         navBar.classList.remove("navbar-dark");
         navBar.classList.remove("bg-dark");
         navBar.classList.remove("text-white");
+        newsletterBg.classList.add("newsLetter");
+        newsletterBg.classList.remove("darkNewsLetter");
         document.body.classList.remove("bg-dark");
         footerBranding.classList.remove("text-white");
-        footerLogo.src = "../images/darkmode_logo.png";
+        footerLogo.src = "../Images/lightmode_logo.png";
         footerLogo.width = "100%";
         footer.classList.add("bg-light");
         footer.classList.add("text-muted");
