@@ -17,9 +17,10 @@ namespace ECommerceWebsite.Controllers
             List<Product> productList = new List<Product>();
             using (var databaseEntity = new SoleStoreDBEntities())
             {
-                productList.Add(databaseEntity.Products.Where(s => s.Category == "Sneakers").FirstOrDefault());
-                productList.Add(databaseEntity.Products.Where(s => s.Category == "Formals").FirstOrDefault());
-                productList.Add(databaseEntity.Products.Where(s => s.Category == "Sports Shoes").FirstOrDefault());
+                productList.Add(databaseEntity.Products.Where(s => s.Category == "Backpack").FirstOrDefault());
+                productList.Add(databaseEntity.Products.Where(s => s.Category == "Duffel").FirstOrDefault());
+                productList.Add(databaseEntity.Products.Where(s => s.Category == "Purse").FirstOrDefault());
+                productList.Add(databaseEntity.Products.Where(s => s.Category == "Suitcase").FirstOrDefault());
             }
 
             var productListModel = new ProductListModel
@@ -48,7 +49,7 @@ namespace ECommerceWebsite.Controllers
         {
             ViewBag.Title = "SHOP";
 
-            string productCategory = categorySort == 1 ? "Sneakers" : categorySort == 2 ? "Formals" : categorySort == 3 ? "Sports Shoes" : "No Category";
+            string productCategory = categorySort == 1 ? "Backpack" : categorySort == 2 ? "Duffel" : categorySort == 3 ? "Purse" : categorySort == 4 ? "Suitcase" : "No Category";
 
             List<Product> productList = new List<Product>();
             using (var databaseEntity = new SoleStoreDBEntities())
